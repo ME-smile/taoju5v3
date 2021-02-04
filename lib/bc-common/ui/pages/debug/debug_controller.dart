@@ -2,14 +2,14 @@
  * @Description: 调试逻辑处理
  * @Author: iamsmiling
  * @Date: 2021-02-02 20:42:09
- * @LastEditTime: 2021-02-03 10:17:17
+ * @LastEditTime: 2021-02-04 09:33:49
  */
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taoju5/config/app_config.dart';
 import 'package:taoju5/config/app_env.dart';
+import 'package:taoju5/app.dart';
 
 class DebugController extends GetxController {
   AppEnv env = AppConfig.env;
@@ -34,7 +34,9 @@ class DebugController extends GetxController {
   }
 
   void save(BuildContext context) {
+    Get.back();
     AppConfig.setEnv(appEnv: env, appMode: mode);
-    exit(0);
+    print("尝试重新启动");
+    RestartWidget.restartApp(context);
   }
 }
