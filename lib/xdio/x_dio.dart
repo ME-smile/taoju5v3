@@ -10,7 +10,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:get/utils.dart';
-import 'package:taoju5/b-end-app/storage/storage_manager.dart';
+import 'package:taoju5/bapp/storage/storage_manager.dart';
 import 'package:taoju5/utils/json_kit.dart';
 import 'package:taoju5/utils/x_logger.dart';
 import 'package:taoju5/config/net_config.dart';

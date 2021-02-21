@@ -2,13 +2,13 @@
  * @Description: json转换工具类
  * @Author: iamsmiling
  * @Date: 2020-12-21 09:59:08
- * @LastEditTime: 2021-01-14 14:52:14
+ * @LastEditTime: 2021-02-10 10:58:43
  */
 
-import 'package:taoju5/b-end-app/extensions/map_kit.dart';
-import 'package:taoju5/b-end-app/extensions/datetime_kit.dart';
+import 'package:taoju5/extensions/map_kit.dart';
+import 'package:taoju5/extensions/datetime_kit.dart';
 import 'package:get/get.dart';
-import 'package:taoju5/b-end-app/interface/i_xselectable.dart';
+import 'package:taoju5/bapp/interface/i_xselectable.dart';
 import 'package:taoju5/config/net_config.dart';
 
 abstract class JsonKit {

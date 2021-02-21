@@ -2,7 +2,7 @@
  * @Description: 微信sdk
  * @Author: iamsmiling
  * @Date: 2021-01-17 18:10:41
- * @LastEditTime: 2021-02-02 17:30:12
+ * @LastEditTime: 2021-02-19 14:08:02
  */
 import 'package:fluwx/fluwx.dart';
 import 'package:taoju5/config/app_config.dart';

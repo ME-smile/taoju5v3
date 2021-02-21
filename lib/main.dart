@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bugly/flutter_bugly.dart';
 import 'package:get/get.dart';
 import 'package:taoju5/app.dart';
-import 'b-end-app/app_initializer.dart';
+import 'bapp/app_initializer.dart';
 
 void main() {
   _main();

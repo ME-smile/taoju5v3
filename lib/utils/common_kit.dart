@@ -2,11 +2,11 @@
  * @Description: 常用工具方法
  * @Author: iamsmiling
  * @Date: 2020-12-24 10:44:12
- * @LastEditTime: 2021-01-18 13:57:32
+ * @LastEditTime: 2021-02-10 10:55:46
  */
 
 import 'package:get/get_utils/get_utils.dart';
-import 'package:taoju5/b-end-app/extensions/datetime_kit.dart';
+import 'package:taoju5/extensions/datetime_kit.dart';
 import 'package:taoju5/config/net_config.dart';
 
 abstract class CommonKit {
