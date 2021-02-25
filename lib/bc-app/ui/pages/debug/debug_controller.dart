@@ -13,7 +13,7 @@ import 'package:taoju5/config/app_env.dart';
 class DebugController extends GetxController {
   AppEnv env = AppConfig.env;
   AppMode mode = AppConfig.mode;
-  bool get isBEndApp => env == AppEnv.bEnd;
+  bool get isBEndApp => env == AppEnv.$b;
 
   bool get isDebug => mode == AppMode.debug;
 
@@ -22,7 +22,7 @@ class DebugController extends GetxController {
 
   ///切换app环境 是b端还是c端
   void switchEnv(bool isBEnd) {
-    env = isBEnd ? AppEnv.bEnd : AppEnv.cEnd;
+    env = isBEnd ? AppEnv.$b : AppEnv.$c;
     update();
   }
 

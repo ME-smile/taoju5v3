@@ -61,8 +61,7 @@ Future showWindowPatternModal({@required String tag}) {
                                               width: 156.w,
                                               onPresss: () => _.select(e, o),
                                               child: Image.asset(
-                                                AppConfig.assetImagePrefixPath +
-                                                    o.img,
+                                                AppConfig.imagePrefix + o.img,
                                               )),
                                         )
                                     ],

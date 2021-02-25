@@ -92,7 +92,8 @@ class CustomerAddressEditPage extends GetView<CustomerAddressEditController> {
                     onFuture: () => showXCityPicker(context,
                         addressResult: _.customer?.address?.address)),
                 XLabelTextField(
-                  key: ValueKey(_.customer?.address?.addressId ?? "addressId"),
+                  key: ValueKey(
+                      _.customer?.address?.detailAddress ?? "detailAddress"),
                   label: "门牌号:",
                   hintText: "例：5号楼203室",
                   initialValue: _.customer?.address?.detailAddress,

@@ -12,16 +12,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AppConfig {
   // app名字
   // static String get appName => isDebug ? '淘居屋商家测试版' : "淘居屋商家";
-  static AppEnv env = AppEnv.bEnd;
+  static AppEnv env = AppEnv.$b;
 
   ///打包时只需要修改这两个即可
-  static AppMode mode = AppMode.debug;
+  static AppMode mode = AppMode.release;
 
   static String get appName => getAppName(env: env, mode: mode);
 
   static String get baseUrl => getServerHost(env: env, mode: mode);
 
-  static const String assetImagePrefixPath = "assets/images/";
+  static const String imagePrefix = "assets/images/";
 
   /// bugly相关
   static const buglyAndroidAppId = '0da7f235c9';
@@ -35,16 +35,15 @@ class AppConfig {
 
   static bool get isPro => bool.fromEnvironment('dart.vm.product');
 
-  static bool get isBEndApp => env == AppEnv.bEnd;
+  static bool get isBEndApp => env == AppEnv.$b;
 
-  static bool get isCEndApp => env == AppEnv.cEnd;
+  static bool get isCEndApp => env == AppEnv.$c;
 
   static Future syncConfig() {
     return SharedPreferences.getInstance().then((SharedPreferences sp) {
       AppConfig.mode =
           (sp.getBool("isDebug") ?? true) ? AppMode.debug : AppMode.release;
-      AppConfig.env =
-          (sp.getBool("isBEnd") ?? true) ? AppEnv.bEnd : AppEnv.cEnd;
+      AppConfig.env = (sp.getBool("isBEnd") ?? true) ? AppEnv.$b : AppEnv.$c;
     });
   }
 
@@ -52,7 +51,7 @@ class AppConfig {
     AppConfig.env = env;
     AppConfig.mode = mode;
     SharedPreferences.getInstance().then((SharedPreferences sp) {
-      sp.setBool("isDebug", env == AppEnv.bEnd);
+      sp.setBool("isDebug", env == AppEnv.$b);
       sp.setBool("isBEnd", mode == AppMode.debug);
     });
   }

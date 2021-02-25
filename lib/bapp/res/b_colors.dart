@@ -104,4 +104,9 @@ class BColors {
 
   ///蓝色字体
   static const Color blueTextColor = Color(0xFF3A79E7);
+
+  ///输入框边框颜色
+  static const Color inputBorderColor = Color(0xFFCECECE);
+
+  static const Color maskColor = Colors.black38;
 }

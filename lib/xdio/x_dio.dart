@@ -10,7 +10,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:get/utils.dart';
-import 'package:taoju5/bapp/storage/storage_manager.dart';
+import 'package:taoju5/storage/storage_manager.dart';
 import 'package:taoju5/utils/json_kit.dart';
 import 'package:taoju5/utils/x_logger.dart';
 import 'package:taoju5/config/net_config.dart';
@@ -38,8 +38,8 @@ class XDio {
         onRequest: ((RequestOptions options) {
           Map queryParameters = options.queryParameters;
           options.queryParameters = _formatParams(queryParameters);
-          Map formData = options.data;
-          options.data = _formatParams(formData);
+          // var formData = options.data;
+          // options.data = _formatParams(formData);
           print(DateTime.now());
           print("--------------请求地址----------------");
           XLogger.v("${options.baseUrl + options.path}");
@@ -71,7 +71,7 @@ class XDio {
     for (int i = 0; i < list.length; i++) {
       var v = list[i];
       if (GetUtils.isNullOrBlank(v) || v == "null") {
-        list[i] = "";
+        map.remove(map.keys.toList()[i]);
       }
     }
     return map;
@@ -84,11 +84,11 @@ class XDio {
   }
 
   Future<BaseResponse> post<T>(String url,
-      {Map queryParameters, Map formData, Options options}) async {
+      {Map queryParameters, var formData, Options options}) async {
     Response response = await dio.post<T>(url,
         queryParameters: queryParameters?.cast<String, dynamic>(),
         options: options,
-        data: formData?.cast<String, dynamic>());
+        data: formData);
     return BaseResponse.fromJson(response.data);
   }
 

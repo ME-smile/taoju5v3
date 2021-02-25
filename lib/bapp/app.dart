@@ -19,13 +19,13 @@ import 'package:taoju5/config/app_env.dart';
 
 import 'ui/pages/home/home_binding.dart';
 
-class BApp extends StatelessWidget {
-  const BApp({Key key}) : super(key: key);
+class $BApp extends StatelessWidget {
+  const $BApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      key: ValueKey(AppEnv.bEnd),
+      key: ValueKey(AppEnv.$b),
       title: AppConfig.appName ?? "test",
       unknownRoute: BAppPages.unkonw,
       getPages: BAppPages.pages,
@@ -33,9 +33,8 @@ class BApp extends StatelessWidget {
       initialRoute: BAppPages.initial,
       initialBinding: TaojuwuBinding(),
       builder: EasyLoading.init(),
-      defaultTransition: Get.defaultTransition,
+      defaultTransition: Transition.cupertino,
       popGesture: false,
-
       // defaultTransition: Transition,
       debugShowCheckedModeBanner: AppConfig.isDebug,
 

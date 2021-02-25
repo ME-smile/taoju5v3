@@ -18,7 +18,7 @@ class XErrorWidget extends StatelessWidget {
     return GestureDetector(
         onTap: onTap,
         child: XAnimationImage(
-          AppConfig.assetImagePrefixPath + "net_err.png",
+          AppConfig.imagePrefix + "net_err.png",
           description: "加载失败,请点击重试",
         ));
   }

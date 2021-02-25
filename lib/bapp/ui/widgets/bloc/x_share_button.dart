@@ -4,6 +4,7 @@
  * @Date: 2021-01-15 15:24:50
  * @LastEditTime: 2021-02-02 17:52:48
  */
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import 'package:taoju5/bapp/ui/modal/share/share.dart';
 import 'package:taoju5/utils/net_kit.dart';
 import 'package:taoju5/xdio/x_dio.dart';
 import 'package:taoju5/config/app_config.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class XShareButtonController extends GetxController {
   final int id;
@@ -56,10 +58,29 @@ class XShareButtonController extends GetxController {
     });
   }
 
+  StreamSubscription _subscription;
   @override
   void onInit() {
     loadData();
+    _subscription =
+        weChatResponseEventHandler.listen((BaseWeChatResponse response) {
+      if (response is WeChatShareResponse) {
+        if (response.isSuccessful) {
+          Get.back();
+          EasyLoading.showSuccess("分享成功!");
+        } else {
+          EasyLoading.showSuccess("分享失败!");
+        }
+      }
+    });
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    _subscription?.cancel();
+    _subscription = null;
   }
 
   share() {
@@ -78,7 +99,7 @@ class XShareButton extends StatelessWidget {
       tag: "$id",
       builder: (_) {
         return IconButton(
-            icon: Image.asset(AppConfig.assetImagePrefixPath + "share.png"),
+            icon: Image.asset(AppConfig.imagePrefix + "share.png"),
             onPressed: _.share);
       },
     );

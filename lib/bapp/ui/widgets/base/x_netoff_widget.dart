@@ -17,7 +17,7 @@ class XNetoffWidget extends StatelessWidget {
     return GestureDetector(
         onTap: onTap,
         child: XAnimationImage(
-          AppConfig.assetImagePrefixPath + "net_off.png",
+          AppConfig.imagePrefix + "net_off.png",
           description: "哎呀，网络出错了，重新加载一下试试～",
         ));
   }

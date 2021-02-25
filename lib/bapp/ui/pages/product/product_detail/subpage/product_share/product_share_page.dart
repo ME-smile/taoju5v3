@@ -57,15 +57,17 @@ class ProductSharePage extends StatelessWidget {
                           if (!GetUtils.isNullOrBlank(_.mainImg))
                             Container(
                               margin: EdgeInsets.symmetric(horizontal: 24),
-                              height: 240,
+                              height: 396,
+                              width: Get.width,
                               child: XPhotoViewer(
                                 url: _.mainImg,
-                                fit: BoxFit.fitWidth,
+                                fit: BoxFit.fitHeight,
                               ),
                             )
                           else
                             SizedBox(
-                              height: 240,
+                              height: 396,
+                              width: Get.width,
                               child: ProductDetailBannerCard(
                                   imageList: _.product.imgList),
                             )

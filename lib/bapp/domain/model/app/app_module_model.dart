@@ -19,7 +19,7 @@ class AppModuleModelListWrapper {
         title: '订单管理',
         description: '订单进度一目了然',
         icon: 'order.png',
-        onTap: () => Get.toNamed(BAppRoutes.orderList + "/")),
+        onTap: () => Get.toNamed(BAppRoutes.orderList)),
     AppModuleModel(
         title: '客户管理',
         description: '把握客户，把握机会',

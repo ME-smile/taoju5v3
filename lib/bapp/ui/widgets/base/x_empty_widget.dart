@@ -18,7 +18,7 @@ class XEmptyWidget extends StatelessWidget {
     return GestureDetector(
         onTap: onTap,
         child: XAnimationImage(
-          AppConfig.assetImagePrefixPath + "empty.png",
+          AppConfig.imagePrefix + "empty.png",
           description: "什么也没有呢～",
         ));
   }

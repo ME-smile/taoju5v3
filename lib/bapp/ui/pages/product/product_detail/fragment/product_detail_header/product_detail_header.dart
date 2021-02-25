@@ -10,6 +10,7 @@ import 'package:taoju5/bapp/domain/model/product/product_detail_model.dart';
 import 'package:taoju5/bapp/domain/model/product/product_type.dart';
 import 'package:taoju5/bapp/res/b_colors.dart';
 import 'package:taoju5/bapp/res/b_dimens.dart';
+import 'package:taoju5/bapp/ui/widgets/bloc/x_cart_button.dart';
 import 'package:taoju5/bapp/ui/widgets/bloc/x_share_button.dart';
 
 class ProductDetailHeader extends StatelessWidget {
@@ -42,6 +43,7 @@ class ProductDetailHeader extends StatelessWidget {
                 visible: !GetPlatform.isWeb,
                 child: XShareButton(id: product.id),
               ),
+              XCartButton()
             ],
           ),
           Visibility(

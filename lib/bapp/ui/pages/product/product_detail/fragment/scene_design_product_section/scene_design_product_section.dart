@@ -92,7 +92,7 @@ class _SceneDesignProductCard extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(6)),
                         child: Image.asset(
-                          AppConfig.assetImagePrefixPath + "shadow_mask.png",
+                          AppConfig.imagePrefix + "shadow_mask.png",
                           width: Get.width,
                           fit: BoxFit.fitWidth,
                         ),

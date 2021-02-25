@@ -40,7 +40,7 @@ class CustomerDetailKongo extends StatelessWidget {
           //         Padding(
           //           padding: EdgeInsets.symmetric(vertical: BDimens.gap16),
           //           child: Image.asset(
-          //               AppConfig.assetImagePrefixPath + kongo.icon),
+          //               AppConfig.imagePrefix + kongo.icon),
           //         ),
           //         Padding(
           //           padding: EdgeInsets.only(bottom: BDimens.gap16),

@@ -5,7 +5,9 @@
  * @LastEditTime: 2021-02-02 17:52:03
  */
 
+import 'package:flutter/foundation.dart';
 import 'package:taoju5/bapp/domain/model/order/order_detail_model.dart';
+import 'package:taoju5/bapp/domain/model/order/order_logistics_model.dart';
 import 'package:taoju5/bapp/domain/model/order/order_model.dart';
 import 'package:taoju5/bapp/domain/model/order/order_price_model.dart';
 import 'package:taoju5/bapp/domain/provider/order/order_api.dart';
@@ -160,4 +162,20 @@ class OrderRepository {
       throw err;
     });
   }
+
+  ///物流信息
+  Future<PacketLogisticsModelListWrapper> logistics({@required Map params}) {
+    return _api
+        .logistics("/api/order/orderExpressList", params: params)
+        .then((BaseResponse response) {
+      if (response.isValid) {
+        return PacketLogisticsModelListWrapper.fromJson(response.data);
+      }
+      throw Future.error(response.message);
+    });
+  }
+
+  ///售后服务
+  Future<BaseResponse> aftersell({@required Map params}) =>
+      XDio().post("/api/order/addOrderQuestion", queryParameters: params);
 }

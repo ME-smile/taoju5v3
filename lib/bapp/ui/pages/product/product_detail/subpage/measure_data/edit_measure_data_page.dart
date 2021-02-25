@@ -49,7 +49,7 @@ class EditMeasureDataPage extends StatelessWidget {
                   tag: tag,
                   builder: (_) {
                     return Image.asset(
-                      AppConfig.assetImagePrefixPath + _.mainImg,
+                      AppConfig.imagePrefix + _.mainImg,
                       height: 480.w,
                     );
                   },

@@ -38,6 +38,7 @@ class CustomerEditAddressParamsModel extends ParamsValidator {
       "gender": (customer?.gender?.index ?? 1),
       "mobile": customer?.tel,
       "address": customer?.address?.detailAddress,
+      "detail_address": customer?.address?.detailAddress
     };
     Map address = customer?.address?.toJson();
     map.addAll(address ?? {});

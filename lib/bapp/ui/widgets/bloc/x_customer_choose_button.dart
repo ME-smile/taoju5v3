@@ -25,8 +25,7 @@ class XCustomerChooseButton extends StatelessWidget {
           onPressed: enabled
               ? () => Get.toNamed(BAppRoutes.customerEdit + "/1")
               : null,
-          icon: Image.asset(
-              AppConfig.assetImagePrefixPath + "customer_badge.png"),
+          icon: Image.asset(AppConfig.imagePrefix + "customer_badge.png"),
           label: Text(
             _?.abbrName,
             maxLines: 1,

@@ -30,7 +30,7 @@ class CustomerProviderController extends GetxController {
 
   set customer(CustomerDetailModel model) {
     _customer = model;
-    print("");
+    update();
   }
 
   setCustomer(CustomerModel model) {

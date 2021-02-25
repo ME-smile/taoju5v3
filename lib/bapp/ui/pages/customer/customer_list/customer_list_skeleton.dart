@@ -7,14 +7,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:taoju5/bapp/domain/model/customer/customer_category_model.dart';
 import 'package:taoju5/bapp/res/b_dimens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomerListSkeleton extends StatelessWidget {
-  final List<CustomerCategoryModel> categoryList;
-  const CustomerListSkeleton({Key key, @required this.categoryList})
-      : super(key: key);
+  const CustomerListSkeleton({Key key}) : super(key: key);
 
   final Color bgColor = Colors.black12;
   @override

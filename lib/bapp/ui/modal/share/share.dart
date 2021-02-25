@@ -93,8 +93,7 @@ Future showShareModal(BuildContext context,
                                   child: Column(
                                     children: [
                                       Image.asset(
-                                          AppConfig.assetImagePrefixPath +
-                                              e.icon),
+                                          AppConfig.imagePrefix + e.icon),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
                                             vertical: BDimens.gap16),

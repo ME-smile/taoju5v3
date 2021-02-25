@@ -138,8 +138,12 @@ class ProductListController extends GetxController {
     return _repository
         .productList(params: initialParams)
         .then((ProductModelListWrapper wrapper) {
-      loadState = XLoadState.idle;
       productList = wrapper.list;
+      if (GetUtils.isNullOrBlank(productList)) {
+        loadState = XLoadState.empty;
+      } else {
+        loadState = XLoadState.idle;
+      }
     }).catchError((err) {
       loadState = XLoadState.error;
     }).whenComplete(update);
@@ -173,7 +177,7 @@ class ProductListController extends GetxController {
         .then((ProductModelListWrapper wrapper) {
       refreshController.refreshCompleted();
       productList = wrapper.list;
-      if (GetUtils.isNullOrBlank(wrapper.list)) {
+      if (GetUtils.isNullOrBlank(productList)) {
         loadState = XLoadState.empty;
       } else {
         loadState = XLoadState.idle;

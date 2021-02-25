@@ -41,7 +41,7 @@ class CommitOrderSuccessPage extends GetView<CustomerProviderController> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(AppConfig.assetImagePrefixPath + "success.png"),
+              Image.asset(AppConfig.imagePrefix + "success.png"),
               Visibility(
                   visible: !isFromShare,
                   child: Column(

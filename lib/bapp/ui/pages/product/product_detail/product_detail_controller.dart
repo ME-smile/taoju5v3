@@ -121,10 +121,10 @@ class ProductDetailController extends GetxController {
 
   void _onClose() {
     _attrControllerList?.forEach((e) {
-      e.onClose();
-      e.onDelete();
+      e?.onClose();
+      e?.onDelete();
     });
-    print("啦啦啦啦啦啦啦");
+
     _onDelete();
   }
 

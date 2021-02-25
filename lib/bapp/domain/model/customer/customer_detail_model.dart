@@ -96,6 +96,7 @@ class CustomerAddressModel {
         JsonKit.asInt(json['city_id']), JsonKit.asInt(json['district_id']));
 
     detailAddress = json['detail_address'];
+    print("__+++");
   }
 
   Map toJson() => {

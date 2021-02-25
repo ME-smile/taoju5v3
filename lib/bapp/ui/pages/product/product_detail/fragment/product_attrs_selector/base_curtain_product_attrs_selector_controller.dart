@@ -7,9 +7,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:taoju5/bapp/domain/model/product/curtain_product_attr_model.dart';
-import 'package:taoju5/bapp/storage/taojuwu_storage.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base_product_attrs_selector_controller.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/product_detail_controller.dart';
+import 'package:taoju5/storage/taojuwu_storage.dart';
 
 abstract class BaseCurtainProductAttrsSelectorController
     extends BaseProductAttrsSelectorController {

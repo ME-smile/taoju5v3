@@ -5,6 +5,7 @@
  * @LastEditTime: 2021-02-19 15:34:07
  */
 import 'package:flutter/material.dart';
+import 'package:taoju5/config/app_env.dart';
 
 import 'bapp/app.dart';
 import 'capp/app.dart';
@@ -13,7 +14,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TaojuwuApp extends StatelessWidget {
   const TaojuwuApp({Key key}) : super(key: key);
-
+  static const Map<AppEnv, Widget> APP_ENV = {
+    AppEnv.$b: $BApp(),
+    AppEnv.$c: $CAPP()
+  };
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -21,7 +25,7 @@ class TaojuwuApp extends StatelessWidget {
         ScreenUtil.init(constraints,
             designSize: Size(750, 1334), allowFontScaling: false);
         return Material(
-          child: AppConfig.isBEndApp ? BApp() : CAPP(),
+          child: APP_ENV[AppConfig.env],
         );
       },
     );

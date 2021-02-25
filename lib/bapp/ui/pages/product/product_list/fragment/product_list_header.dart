@@ -32,12 +32,10 @@ class ProductListHeader extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.only(right: BDimens.gap16),
-                    child: Image.asset(
-                        AppConfig.assetImagePrefixPath + "grid_mode.png"),
+                    child: Image.asset(AppConfig.imagePrefix + "grid_mode.png"),
                   ),
                   Container(
-                    child: Image.asset(
-                        AppConfig.assetImagePrefixPath + "list_mode.png"),
+                    child: Image.asset(AppConfig.imagePrefix + "list_mode.png"),
                   ),
                 ],
               );
@@ -60,8 +58,7 @@ class ProductListHeader extends StatelessWidget {
                     child: Row(
                       children: [
                         Text("筛选"),
-                        Image.asset(
-                            AppConfig.assetImagePrefixPath + "filter.png")
+                        Image.asset(AppConfig.imagePrefix + "filter.png")
                       ],
                     ),
                   )

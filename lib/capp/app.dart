@@ -13,13 +13,13 @@ import 'package:taoju5/config/app_env.dart';
 
 import 'routes/capp_pages.dart';
 
-class CAPP extends StatelessWidget {
-  const CAPP({Key key}) : super(key: key);
+class $CAPP extends StatelessWidget {
+  const $CAPP({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      key: ValueKey(AppEnv.cEnd),
+      key: ValueKey(AppEnv.$c),
       title: AppConfig.appName,
       getPages: CAppPages.pages,
       home: CHomePage(),

@@ -30,7 +30,7 @@ class OrderStatusTabModel implements IXSelectable {
   final count = 0.obs;
   bool isChecked;
   OrderStatusTabModel({this.name, this.status, this.isChecked = false});
-  Map toArgs() => {"status": status};
+  Map get params => {"status": status};
 }
 
 class OrderListParentController extends GetxController
@@ -47,7 +47,7 @@ class OrderListParentController extends GetxController
     OrderStatusTabModel(name: "待安装", status: "7"),
     OrderStatusTabModel(name: "已完成", status: "8"),
     OrderStatusTabModel(name: "已取消", status: "9"),
-    OrderStatusTabModel(name: "全部", status: ""),
+    OrderStatusTabModel(name: "全部"),
   ];
 
   List<OrderTimeOptionModel> timeList = [
@@ -58,7 +58,7 @@ class OrderListParentController extends GetxController
   TabController tabController;
 
   ///获取tag
-  String get tag => tabList[tabController?.index ?? 0].status ?? "ing";
+  String get tag => tabList[tabController?.index ?? 0].name;
 
   ///获取[orderListController]
 
@@ -110,10 +110,26 @@ class OrderListParentController extends GetxController
     Get.back();
   }
 
+  void _onTabChange() {
+    print("+++___");
+    for (int i = 0; i < tabList.length; i++) {
+      tabList[i].isChecked = i == tabController.index;
+    }
+    update(["status"]);
+  }
+
   @override
   void onInit() {
-    tabController = TabController(length: tabList.length, vsync: this);
+    tabController = TabController(length: tabList.length, vsync: this)
+      ..addListener(_onTabChange);
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    tabController.removeListener(_onTabChange);
+    tabController.dispose();
+    super.onClose();
   }
 }
 
@@ -140,7 +156,12 @@ class OrderListController extends GetxController {
       "order_time": time
     }).then((value) {
       orderList = value.orderModelList;
-      loadState = XLoadState.idle;
+      if (GetUtils.isNullOrBlank(orderList)) {
+        loadState = XLoadState.empty;
+      } else {
+        loadState = XLoadState.idle;
+      }
+
       Get.find<OrderListParentController>().updateCount(value.countList);
       refreshController?.refreshCompleted();
     }).catchError((err) {
@@ -175,7 +196,12 @@ class OrderListController extends GetxController {
     loadState = XLoadState.busy;
     return _repository.orderList(params: {"status": status}).then((value) {
       orderList = value.orderModelList;
-      loadState = XLoadState.idle;
+
+      if (GetUtils.isNullOrBlank(orderList)) {
+        loadState = XLoadState.empty;
+      } else {
+        loadState = XLoadState.idle;
+      }
       Get.find<OrderListParentController>().updateCount(value.countList);
     }).catchError((err) {
       loadState = XLoadState.error;

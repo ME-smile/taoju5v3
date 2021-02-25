@@ -33,6 +33,8 @@ abstract class BAppRoutes {
 
   static const customerList = '/customerList';
 
+  static const categoryCustomerList = '/categoryCustomerList';
+
   static const customerDetail = '/customerDetail';
 
   static const customerEdit = '/customerEdit';
@@ -42,6 +44,8 @@ abstract class BAppRoutes {
   static const orderList = '/orderList';
 
   static const orderDetail = '/orderDetail';
+
+  static const orderLogistics = "/orderLogistics";
 
   static const commitOrder = '/commitOrder';
 

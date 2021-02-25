@@ -20,11 +20,11 @@ class ProductDetailBannerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 96, left: 24, right: 24),
+      margin: EdgeInsets.only(left: 24, right: 24),
       child: XSwiper(
         itemCount: imageList?.length,
         itemBuilder: (BuildContext context, int index) {
-          return XPhotoViewer(fit: BoxFit.fitWidth, url: imageList[index]);
+          return XPhotoViewer(fit: BoxFit.fitHeight, url: imageList[index]);
         },
       ),
     );

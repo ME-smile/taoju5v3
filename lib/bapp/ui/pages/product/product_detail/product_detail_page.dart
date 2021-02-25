@@ -47,8 +47,11 @@ class ProductDetailPage extends StatelessWidget {
                             pinned: false,
                             actions: [XCustomerChooseButton()],
                             flexibleSpace: FlexibleSpaceBar(
-                              background: ProductDetailBannerCard(
-                                  imageList: _.product.imgList),
+                              background: Container(
+                                margin: EdgeInsets.only(top: 96),
+                                child: ProductDetailBannerCard(
+                                    imageList: _.product.imgList),
+                              ),
                             ))
                       ];
                     },

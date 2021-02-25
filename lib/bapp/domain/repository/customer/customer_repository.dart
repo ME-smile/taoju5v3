@@ -8,6 +8,7 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:taoju5/bapp/domain/model/customer/customer_detail_model.dart';
 import 'package:taoju5/bapp/domain/model/customer/customer_model.dart';
+import 'package:taoju5/bapp/domain/model/customer/customer_table_model.dart';
 import 'package:taoju5/bapp/domain/provider/customer/customer_api.dart';
 import 'package:taoju5/xdio/x_dio.dart';
 
@@ -18,6 +19,17 @@ class CustomerRepository {
     return _api.customerList("/api/client/lists").then((BaseResponse response) {
       if (response.isValid)
         return CustomerModelListWrapper.fromJson(response.data);
+      throw EasyLoading.showError(response.message);
+    }).catchError((err) {
+      throw err;
+    });
+  }
+
+  Future<CustomerTableModel> categoryCustomerList({Map params}) {
+    return _api
+        .categoryCustomerList("/api/client/lists_with_type", params: params)
+        .then((BaseResponse response) {
+      if (response.isValid) return CustomerTableModel.fromJson(response.data);
       throw EasyLoading.showError(response.message);
     }).catchError((err) {
       throw err;

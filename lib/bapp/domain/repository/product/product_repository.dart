@@ -22,7 +22,7 @@ class ProductRepository {
       if (response.isValid) {
         return ProductModelListWrapper.fromJson(response.data);
       }
-      throw Exception(response.message);
+      throw Future.error(response.message);
     }).catchError((err) {
       throw err;
     });

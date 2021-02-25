@@ -7,27 +7,33 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taoju5/bapp/storage/taojuwu_storage.dart';
+import 'package:taoju5/bapp/routes/bapp_pages.dart';
+import 'package:taoju5/bapp/ui/pages/home/customer_provider_controller.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class _XCartButtonController extends GetxController {
-  String id;
-
-  @override
-  void onInit() {
-    TaojuwuStorageAccessor accessor = TaojuwuStorageAccessor();
-    id = accessor.customer.id;
-    super.onInit();
+  jump() {
+    CustomerProviderController customerProvider =
+        Get.find<CustomerProviderController>();
+    if (customerProvider.isCustomerNull) {
+      return EasyLoading.showError("请先选择客户哦");
+    }
+    return Get.toNamed(BAppRoutes.cart + "/${customerProvider.id}");
   }
 }
 
 class XCartButton extends StatelessWidget {
   final String imageUrl;
-  const XCartButton({Key key, this.imageUrl}) : super(key: key);
+  const XCartButton(
+      {Key key, this.imageUrl = "assets/images/product_detail_cart.png"})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<_XCartButtonController>(builder: (_) {
-      return Image.asset(imageUrl);
-    });
+    return GetBuilder<_XCartButtonController>(
+        init: _XCartButtonController(),
+        builder: (_) {
+          return GestureDetector(onTap: _.jump, child: Image.asset(imageUrl));
+        });
   }
 }

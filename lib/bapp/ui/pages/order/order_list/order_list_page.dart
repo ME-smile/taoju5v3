@@ -44,7 +44,10 @@ class OrderListPage extends GetView<OrderListParentController> {
                           return IndexedStack(
                             index: !ModalRoute.of(context).isCurrent ? 0 : 1,
                             children: [
-                              Text("请选择订单时间"),
+                              Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: BDimens.gap16),
+                                  child: Text("请选择订单时间")),
                               TabBar(
                                   controller: controller.tabController,
                                   isScrollable: true,
@@ -59,11 +62,16 @@ class OrderListPage extends GetView<OrderListParentController> {
                         }),
                     Positioned(
                         right: 0,
-                        child: Row(
-                          children: [
-                            XRotationArrow(
-                                onTap: () => controller.filter(context))
-                          ],
+                        child: Container(
+                          color: Get.theme.primaryColor,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: BDimens.gap16),
+                          child: Row(
+                            children: [
+                              XRotationArrow(
+                                  onTap: () => controller.filter(context))
+                            ],
+                          ),
                         ))
                   ],
                 );
@@ -78,7 +86,7 @@ class OrderListPage extends GetView<OrderListParentController> {
             Container(
               child: GetBuilder<OrderListController>(
                 init: OrderListController(status: tab.status),
-                tag: tab.status,
+                tag: tab.name,
                 autoRemove: false,
                 builder: (_) {
                   return XLoadStateBuilder(

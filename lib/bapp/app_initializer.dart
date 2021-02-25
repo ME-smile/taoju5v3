@@ -9,9 +9,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get_utils/src/platform/platform.dart';
 import 'package:taoju5/bapp/res/b_icons.dart';
-import 'package:taoju5/bapp/storage/storage_manager.dart';
 import 'package:taoju5/config/app_config.dart';
 import 'package:taoju5/config/sdk_manager/sdk_manager.dart';
+import 'package:taoju5/storage/storage_manager.dart';
 
 abstract class AppInitializer {
   static init() {

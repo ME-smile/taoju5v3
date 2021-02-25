@@ -11,6 +11,8 @@ class CustomerAPI {
   Future<BaseResponse> customerList(String url, {Map params}) =>
       XDio().get(url, params: params);
 
+  Future<BaseResponse> categoryCustomerList(String url, {Map params}) =>
+      XDio().get(url, params: params);
   Future<BaseResponse> customerDetail(String url, {Map params}) =>
       XDio().get(url, params: params);
 

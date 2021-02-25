@@ -10,7 +10,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:taoju5/bapp/domain/model/user/user_info_model.dart';
 import 'package:taoju5/bapp/domain/repository/user/user_repository.dart';
-import 'package:taoju5/bapp/storage/storage_manager.dart';
+import 'package:taoju5/storage/storage_manager.dart';
 
 class UserProviderController extends GetxController {
   UserRepository _repository = UserRepository();

@@ -59,6 +59,9 @@ class CustomerModel implements ISuspensionBean {
   String tel;
 
   String avatar;
+
+  String wanted;
+
   CustomerModel();
   CustomerAddressModel address;
 
@@ -78,6 +81,7 @@ class CustomerModel implements ISuspensionBean {
     enterTime = json['enter_time'];
     intentionProduct = json['good_category'];
     address = CustomerAddressModel.fromJsom(json);
+    wanted = json["good_category"];
   }
 
   Map toJson() => {"id": id, "name": name};

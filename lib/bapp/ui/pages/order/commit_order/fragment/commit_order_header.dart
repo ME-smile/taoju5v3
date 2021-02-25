@@ -190,6 +190,7 @@ class CommitOrderHeader extends GetView<CommitOrderController> {
                             margin: EdgeInsets.only(left: BDimens.gap8),
                             child: Text("门店信息:${controller.user.shopName}",
                                 overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
                                 style: TextStyle(
                                   fontSize: BDimens.sp26,
                                   color: BColors.tipColor,

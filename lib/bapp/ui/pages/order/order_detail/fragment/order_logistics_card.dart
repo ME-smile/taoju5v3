@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:taoju5/bapp/res/b_colors.dart';
 import 'package:taoju5/bapp/res/b_dimens.dart';
 import 'package:taoju5/bapp/res/b_icons.dart';
+import 'package:taoju5/bapp/routes/bapp_pages.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/order_detail_controller.dart';
 
 class OrderLogisticsCard extends GetView<OrderDetailController> {
@@ -17,37 +18,42 @@ class OrderLogisticsCard extends GetView<OrderDetailController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-          vertical: BDimens.gap36, horizontal: BDimens.gap32),
-      child: Row(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(right: BDimens.gap24),
-            child: Icon(
-              BIcons.add,
-              color: BColors.foregroundColor,
+    return GestureDetector(
+      onTap: () =>
+          Get.toNamed(BAppRoutes.orderLogistics + "/${controller.order.id}"),
+      child: Container(
+        padding: EdgeInsets.symmetric(
+            vertical: BDimens.gap36, horizontal: BDimens.gap32),
+        child: Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(right: BDimens.gap24),
+              child: Icon(
+                BIcons.add,
+                color: BColors.foregroundColor,
+              ),
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "收货人:${controller.order.receiverName}  ${controller.order.receiverTel}",
-                style: TextStyle(
-                    color: BColors.textColor,
-                    fontSize: BDimens.sp28,
-                    fontWeight: FontWeight.w400),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: BDimens.gap4),
-                child: Text("${controller.order.receiverAddress}",
-                    style: TextStyle(
-                        fontSize: BDimens.sp24, color: BColors.subTitleColor)),
-              ),
-            ],
-          )
-        ],
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "收货人:${controller.order.receiverName}  ${controller.order.receiverTel}",
+                  style: TextStyle(
+                      color: BColors.textColor,
+                      fontSize: BDimens.sp28,
+                      fontWeight: FontWeight.w400),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: BDimens.gap4),
+                  child: Text("${controller.order.receiverAddress}",
+                      style: TextStyle(
+                          fontSize: BDimens.sp24,
+                          color: BColors.subTitleColor)),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

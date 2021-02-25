@@ -41,6 +41,9 @@ enum OrderStatus {
 
   ///[proccessOn]进行中
   proccessOn,
+
+  ///[aftersell]售后
+  aftersell
 }
 
 extension OrderStatusKit on OrderStatus {
@@ -78,7 +81,8 @@ OrderStatus getOrderStaus(int code) {
     15: OrderStatus.toBeReceived,
     7: OrderStatus.toBeInstalled,
     8: OrderStatus.finished,
-    9: OrderStatus.canceled
+    9: OrderStatus.canceled,
+    10: OrderStatus.aftersell
   };
   return map[code];
 }

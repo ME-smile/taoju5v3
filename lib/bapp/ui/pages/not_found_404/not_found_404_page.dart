@@ -20,7 +20,7 @@ class NotFound404Page extends StatelessWidget {
       ),
       body: Container(
         height: double.maxFinite,
-        child: Image.asset(AppConfig.assetImagePrefixPath + "404.png"),
+        child: Image.asset(AppConfig.imagePrefix + "404.png"),
       ),
     );
   }

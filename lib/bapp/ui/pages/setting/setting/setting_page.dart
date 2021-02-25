@@ -42,6 +42,7 @@ class SettingPage extends StatelessWidget {
             ),
             XLabelTile(
               label: "问题反馈",
+              onTap: () => Get.toNamed(BAppRoutes.feedback),
             ),
             Divider(),
             XLabelTile(
@@ -52,6 +53,11 @@ class SettingPage extends StatelessWidget {
             XLabelTile(
               label: "关于淘居屋",
               trailing: Text(_.versionCode),
+            ),
+            Divider(),
+            XLabelTile(
+              label: "售后服务",
+              onTap: () => Get.toNamed(BAppRoutes.afterSell),
             ),
             Container(
                 margin: EdgeInsets.only(top: BDimens.gap16),

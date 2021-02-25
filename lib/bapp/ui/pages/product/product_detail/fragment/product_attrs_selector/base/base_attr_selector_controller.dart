@@ -150,12 +150,16 @@ abstract class BaseAttrSelectorController extends GetxController {
   }
 
   Future<bool> reset() {
-    if (GetUtils.isNullOrBlank(attr?.confirmSelectedOptionList)) {
-      attr?.optionList?.first?.isChecked = true;
-      attr?.optionList?.first?.hasConfirmed = true;
-    }
-    attr?.optionList?.forEach((e) {
-      e.isChecked = e.isChecked && e.hasConfirmed;
+    List<CurtainProductAttrOptionModel> optionList = attr?.optionList;
+    CurtainProductAttrOptionModel option = optionList?.firstWhere(
+        (e) => e.isChecked && e.hasConfirmed,
+        orElse: () => optionList?.first);
+    // if (GetUtils.isNullOrBlank(attr?.confirmSelectedOptionList)) {
+    //   attr?.optionList?.first?.isChecked = true;
+    //   attr?.optionList?.first?.hasConfirmed = true;
+    // }
+    optionList?.forEach((e) {
+      e.isChecked = e == option;
     });
 
     update(["options"]);

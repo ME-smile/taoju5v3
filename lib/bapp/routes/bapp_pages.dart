@@ -6,7 +6,8 @@
  */
 
 import 'package:get/get.dart';
-import 'package:taoju5/bapp/storage/storage_manager.dart';
+import 'package:taoju5/bapp/ui/pages/after_sell/after_sell_binding.dart';
+import 'package:taoju5/bapp/ui/pages/after_sell/after_sell_page.dart';
 import 'package:taoju5/bapp/ui/pages/customer/customer_address_edit/customer_address_edit_binding.dart';
 import 'package:taoju5/bapp/ui/pages/customer/customer_address_edit/customer_address_eidt_page.dart';
 import 'package:taoju5/bapp/ui/pages/customer/customer_detail/customer_detail_binding.dart';
@@ -15,6 +16,8 @@ import 'package:taoju5/bapp/ui/pages/customer/customer_edit/customer_edit_bindin
 import 'package:taoju5/bapp/ui/pages/customer/customer_edit/customer_edit_page.dart';
 import 'package:taoju5/bapp/ui/pages/customer/customer_list/customer_list_binding.dart';
 import 'package:taoju5/bapp/ui/pages/customer/customer_list/customer_list_page.dart';
+import 'package:taoju5/bapp/ui/pages/customer/customer_table/customer_table_binding.dart';
+import 'package:taoju5/bapp/ui/pages/customer/customer_table/customer_table_page.dart';
 import 'package:taoju5/bapp/ui/pages/dashboard/data_dash_board_binding.dart';
 import 'package:taoju5/bapp/ui/pages/dashboard/data_dash_board_page.dart';
 import 'package:taoju5/bapp/ui/pages/home/home_page.dart';
@@ -26,6 +29,8 @@ import 'package:taoju5/bapp/ui/pages/order/commit_order/commit_order_page.dart';
 import 'package:taoju5/bapp/ui/pages/order/commit_order_success/commit_order_success_page.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/order_detail_binding.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/order_detail_page.dart';
+import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/logistics/order_logistics_binding.dart';
+import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/logistics/order_logistics_page.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_list/order_list_binding.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_list/order_list_page.dart';
 import 'package:taoju5/bapp/ui/pages/product/cart/cart_binding.dart';
@@ -55,6 +60,7 @@ import 'package:taoju5/bapp/ui/pages/setting/setting/setting_page.dart';
 import 'package:taoju5/bapp/ui/pages/user_protocol/user_protocol_page.dart';
 import 'package:taoju5/bc-app/ui/pages/debug/debug_binding.dart';
 import 'package:taoju5/bc-app/ui/pages/debug/debug_page.dart';
+import 'package:taoju5/storage/storage_manager.dart';
 
 part 'bapp_routes.dart';
 
@@ -118,7 +124,9 @@ class BAppPages {
 
     ///购物车页面
     GetPage(
-        name: BAppRoutes.cart, page: () => CartPage(), binding: CartBinding()),
+        name: BAppRoutes.cart + "/:customerId",
+        page: () => CartPage(),
+        binding: CartBinding()),
 
     ///填写测装数据
     GetPage(
@@ -132,6 +140,10 @@ class BAppPages {
         page: () => CustomerListPage(),
         binding: CustomerListBinding()),
     GetPage(
+        name: BAppRoutes.categoryCustomerList + "/:category",
+        page: () => CustomerTablePage(),
+        binding: CustomerTableBinding()),
+    GetPage(
         name: BAppRoutes.customerDetail + "/:id",
         page: () => CustomerDetailPage(),
         binding: CustomerDetailBinding()),
@@ -142,14 +154,22 @@ class BAppPages {
 
     ///订单相关
     GetPage(
-        name: BAppRoutes.orderList + "/:customerId",
+        name: BAppRoutes.orderList,
         page: () => OrderListPage(),
         binding: OrderListBinding()),
 
+    ///订单详情
     GetPage(
         name: BAppRoutes.orderDetail + "/:id",
         page: () => OrderDetailPage(),
-        binding: OrderDetailBinding()),
+        binding: OrderDetailBinding(),
+        children: []),
+
+    ///订单物流
+    GetPage(
+        name: BAppRoutes.orderLogistics + "/:id",
+        page: () => OrderLogisticsPage(),
+        binding: OrderLogisticsBinding()),
 
     GetPage(
         name: BAppRoutes.commitOrder + "/:orderType",
@@ -196,6 +216,12 @@ class BAppPages {
     GetPage(name: BAppRoutes.userProtocol, page: () => UserProtocolPage()),
 
     ///app版本号
-    GetPage(name: BAppRoutes.appVersion, page: () => AppVersionPage())
+    GetPage(name: BAppRoutes.appVersion, page: () => AppVersionPage()),
+
+    //售后服务
+    GetPage(
+        name: BAppRoutes.afterSell,
+        page: () => AfterSellPage(),
+        binding: AfterSellBinding())
   ];
 }

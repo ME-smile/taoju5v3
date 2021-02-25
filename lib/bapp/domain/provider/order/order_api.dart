@@ -41,4 +41,16 @@ class OrderAPI {
   ///提交测量单
   Future<BaseResponse> submitOrder(String url, {Map params}) =>
       XDio().post(url, formData: params);
+
+  ///物流信息
+  Future<BaseResponse> logistics(String url, {Map params}) =>
+      XDio().post(url, queryParameters: params);
+
+  ///售后服务
+  Future<BaseResponse> aftersell(String url, {Map params}) =>
+      XDio().post(url, formData: params);
+
+  ///上传图片
+  Future<BaseResponse> uploadImage(String url, {Map params}) =>
+      XDio().post(url, formData: params);
 }

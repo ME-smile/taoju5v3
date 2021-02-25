@@ -25,7 +25,7 @@ class AppModuleCard extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.symmetric(horizontal: BDimens.gap24),
-              child: Image.asset(AppConfig.assetImagePrefixPath + module.icon),
+              child: Image.asset(AppConfig.imagePrefix + module.icon),
             ),
             FittedBox(
               child: Column(

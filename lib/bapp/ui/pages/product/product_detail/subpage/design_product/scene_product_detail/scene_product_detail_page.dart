@@ -99,7 +99,7 @@ class SceneProductDetailPage extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(right: BDimens.gap36),
                               child: XCartButton(
-                                imageUrl: AppConfig.assetImagePrefixPath +
+                                imageUrl: AppConfig.imagePrefix +
                                     "product_detail_cart.png",
                               ),
                             ),

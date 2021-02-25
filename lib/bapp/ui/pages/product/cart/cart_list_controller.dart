@@ -129,21 +129,25 @@ class CartListController extends GetxController {
   }
 
   XLoadState loadState = XLoadState.idle;
-  Future _loadData() {
+  Future loadData() {
     loadState = XLoadState.busy;
+    update();
     return _repository.cartList(params: {"client_uid": clientId}).then(
         (CartPorductModelListWrapper value) {
-      loadState = XLoadState.idle;
       cartList = value.list;
+      if (GetUtils.isNullOrBlank(cartList)) {
+        loadState = XLoadState.empty;
+      } else {
+        loadState = XLoadState.idle;
+      }
     }).catchError((err) {
       loadState = XLoadState.error;
-      throw err;
     }).whenComplete(update);
   }
 
   @override
   void onInit() {
-    _loadData();
+    loadData();
     super.onInit();
   }
 }

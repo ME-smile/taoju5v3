@@ -155,7 +155,8 @@ class CustomerEditPage extends GetView<CustomerEditController> {
                               addressResult: _.target.address?.address)),
                       XLabelTextField(
                         label: "详细地址",
-                        initialValue: _.target.wx,
+                        key: ValueKey(_.target.address.detailAddress),
+                        initialValue: _.target.address.detailAddress,
                         onChanged: (String str) {
                           _.target.wx = str;
                         },
