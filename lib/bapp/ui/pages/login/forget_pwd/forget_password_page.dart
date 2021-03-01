@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taoju5/bapp/ui/pages/login/login/login_controller.dart';
 
-class ResetPwdPage extends StatelessWidget {
-  const ResetPwdPage({Key key}) : super(key: key);
+class ForgetPasswrdPage extends StatelessWidget {
+  const ForgetPasswrdPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("重置密码"),
+          title: Text("找回密码"),
         ),
         body: SingleChildScrollView(
           child: GetBuilder<LoginController>(
