@@ -26,4 +26,8 @@ class TaojuwuRepository {
       throw Future.error(response.message);
     });
   }
+
+  Future<BaseResponse> feedback(Map params) {
+    return _api.feedback("/api/goods/addGoodsConsult", params: params);
+  }
 }

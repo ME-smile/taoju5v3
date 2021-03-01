@@ -35,16 +35,16 @@ class DataDashBoardPage extends GetView<DataDashBoardController> {
                       controller: controller.tabController2,
                       tabs: [for (String tab in controller.timeList) Text(tab)],
                     )),
-                    GestureDetector(
-                      onTap: () {
-                        controller.showMore = true;
-                        controller.update(["more"]);
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 12.0),
-                        child: Text("更多"),
-                      ),
-                    )
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     controller.showMore = true;
+                    //     controller.update(["more"]);
+                    //   },
+                    //   child: Padding(
+                    //     padding: EdgeInsets.only(bottom: 12.0),
+                    //     child: Text("更多"),
+                    //   ),
+                    // )
                   ],
                 ),
               ],
@@ -67,8 +67,7 @@ class DataDashBoardPage extends GetView<DataDashBoardController> {
                           for (String tab in controller.timeList) Text(tab)
                         ])
                 ],
-              ),
-              Text("更多")
+              )
             ],
           );
         },

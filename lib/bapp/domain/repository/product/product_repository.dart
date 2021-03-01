@@ -115,6 +115,9 @@ class ProductRepository {
     });
   }
 
-  ///加入购物车
+  Future<BaseResponse> isLiked({Map params}) {
+    return _api.isLiked("/api/goods/whetherCollection");
+  }
 
+  Future addToCart() {}
 }

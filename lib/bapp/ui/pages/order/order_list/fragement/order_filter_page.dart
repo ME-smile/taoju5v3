@@ -33,8 +33,8 @@ class OrderFilterPage extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   crossAxisCount: 3,
                   crossAxisSpacing: BDimens.gap16,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 3.2,
+                  mainAxisSpacing: BDimens.gap32,
+                  childAspectRatio: 3.6,
                   children: [
                     for (OrderTimeOptionModel e in _.timeList)
                       XCheckButton(
@@ -59,7 +59,7 @@ class OrderFilterPage extends StatelessWidget {
                   crossAxisCount: 3,
                   crossAxisSpacing: BDimens.gap16,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 3.2,
+                  childAspectRatio: 3.6,
                   children: [
                     for (OrderStatusTabModel tab in _.tabList)
                       XCheckButton(

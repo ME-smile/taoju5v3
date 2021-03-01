@@ -14,6 +14,7 @@ import 'package:taoju5/bapp/routes/bapp_pages.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/widgets/x_title_bar.dart';
+import 'package:taoju5/bapp/ui/pages/product/product_list/widgets/product_card.dart';
 
 class RecommendProductSection extends StatelessWidget {
   final List<ProductModel> productList;
@@ -28,10 +29,13 @@ class RecommendProductSection extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          XTitleBar(title: "为你推荐"),
+          Container(
+              margin: EdgeInsets.symmetric(horizontal: BDimens.gap16),
+              child: XTitleBar(title: "为你推荐")),
           Flexible(
               child: GridView.builder(
                   shrinkWrap: true,
+                  padding: EdgeInsets.zero,
                   itemCount: productList.length,
                   physics: NeverScrollableScrollPhysics(),
                   // controller: scrollController,
@@ -40,41 +44,8 @@ class RecommendProductSection extends StatelessWidget {
                     childAspectRatio: 0.84,
                   ),
                   itemBuilder: (BuildContext context, int i) {
-                    ProductModel e = productList[i];
-                    return GestureDetector(
-                      onTap: () => Get.toNamed(
-                          BAppRoutes.productDetail + "/${e.id}",
-                          arguments: e.productType),
-                      child: Container(
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              width: 320.w,
-                              child: AspectRatio(
-                                  aspectRatio: 1.0,
-                                  child: Image.network(e.image)),
-                            ),
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                  left: BDimens.gap20, top: BDimens.gap24),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    e.name,
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  left: BDimens.gap20, top: BDimens.gap12),
-                              alignment: Alignment.centerLeft,
-                              child: Text("¥${e.price.toStringAsFixed(2)}"),
-                            )
-                          ],
-                        ),
-                      ),
+                    return ProductGridCard(
+                      product: productList[i],
                     );
                   }))
         ],

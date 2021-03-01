@@ -31,114 +31,136 @@ class CommitOrderHeader extends GetView<CommitOrderController> {
           ),
           child: Column(
             children: [
-              GetBuilder<CommitOrderController>(builder: (_) {
-                return GestureDetector(
-                  onTap: () => Get.toNamed(
-                      BAppRoutes.customerAddressEdit + "/${_.customer?.id}",
-                      arguments: controller.customer),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: BDimens.gap24),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 64.sp,
-                          child: Text(
-                            "收",
-                            style: TextStyle(
-                                color: BColors.primaryColor,
-                                fontSize: BDimens.sp48),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            alignment: Alignment.centerLeft,
-                            margin: EdgeInsets.only(left: BDimens.gap24),
-                            child: GetBuilder<CustomerProviderController>(
-                              id: "address",
-                              builder: (_) {
-                                return Column(
-                                  children: [
-                                    if (controller
-                                            .customer?.address?.addressId ==
-                                        null)
-                                      Text(
-                                        "请填写服务地址",
-                                        style: TextStyle(
-                                            fontSize: BDimens.sp32,
-                                            fontWeight: FontWeight.w500),
-                                      )
-                                    else
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
+              GetBuilder<CommitOrderController>(
+                  id: "customer",
+                  builder: (_) {
+                    return GestureDetector(
+                      onTap: () => Get.toNamed(
+                          BAppRoutes.customerAddressEdit + "/${_.customer?.id}",
+                          arguments: controller.customer),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: BDimens.gap24),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 64.sp,
+                              child: Text(
+                                "收",
+                                style: TextStyle(
+                                    color: BColors.primaryColor,
+                                    fontSize: BDimens.sp48),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                alignment: Alignment.centerLeft,
+                                margin: EdgeInsets.only(left: BDimens.gap24),
+                                child: GetBuilder<CustomerProviderController>(
+                                  id: "address",
+                                  builder: (_) {
+                                    return Column(
+                                      children: [
+                                        if (controller
+                                                .customer?.address?.addressId ==
+                                            null)
+                                          Text(
+                                            "请填写服务地址",
+                                            style: TextStyle(
+                                                fontSize: BDimens.sp32,
+                                                fontWeight: FontWeight.w500),
+                                          )
+                                        else
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              Text(
-                                                "收货人:",
-                                                style: TextStyle(
-                                                    fontSize: BDimens.sp28,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                              Text(
-                                                controller.customer?.name ?? "",
-                                                style: TextStyle(
-                                                    fontSize: BDimens.sp28,
-                                                    fontWeight:
-                                                        FontWeight.w500),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "收货人:",
+                                                    style: TextStyle(
+                                                        fontSize: BDimens.sp28,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                  Flexible(
+                                                    child: Text(
+                                                      controller
+                                                              .customer?.name ??
+                                                          "",
+                                                      maxLines: 1,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                              BDimens.sp28,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                        left: BDimens.gap16),
+                                                    child: Text(
+                                                      controller
+                                                              .customer?.tel ??
+                                                          "",
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                              BDimens.sp26,
+                                                          color:
+                                                              BColors.tipColor),
+                                                    ),
+                                                  )
+                                                ],
                                               ),
                                               Container(
                                                 margin: EdgeInsets.only(
-                                                    left: BDimens.gap16),
-                                                child: Text(
-                                                  controller.customer?.tel ??
-                                                      "",
-                                                  style: TextStyle(
-                                                      fontSize: BDimens.sp26,
-                                                      color: BColors.tipColor),
+                                                    top: BDimens.gap8),
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      "服务地址:",
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                              BDimens.sp26,
+                                                          color:
+                                                              BColors.tipColor),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                        controller.customer
+                                                            ?.concreteAddress,
+                                                        maxLines: 2,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: TextStyle(
+                                                            fontSize:
+                                                                BDimens.sp26,
+                                                            color: BColors
+                                                                .tipColor),
+                                                      ),
+                                                    )
+                                                  ],
                                                 ),
                                               )
                                             ],
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                top: BDimens.gap8),
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  "服务地址:",
-                                                  style: TextStyle(
-                                                      fontSize: BDimens.sp26,
-                                                      color: BColors.tipColor),
-                                                ),
-                                                Text(
-                                                  controller.customer
-                                                      ?.concreteAddress,
-                                                  style: TextStyle(
-                                                      fontSize: BDimens.sp26,
-                                                      color: BColors.tipColor),
-                                                )
-                                              ],
-                                            ),
                                           )
-                                        ],
-                                      )
-                                  ],
-                                );
-                              },
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
                             ),
-                          ),
+                            Icon(
+                              BIcons.next,
+                              size: 32,
+                            )
+                          ],
                         ),
-                        Icon(
-                          BIcons.next,
-                          size: 32,
-                        )
-                      ],
-                    ),
-                  ),
-                );
-              }),
+                      ),
+                    );
+                  }),
               Divider(),
               Container(
                 padding: EdgeInsets.only(bottom: BDimens.gap24),
@@ -162,41 +184,43 @@ class CommitOrderHeader extends GetView<CommitOrderController> {
                           border: Border.all(
                               color: BColors.foregroundColor, width: 1)),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(left: BDimens.gap24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "销售员:${controller.user.nickName}",
-                                style: TextStyle(
-                                    fontSize: BDimens.sp28,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: BDimens.gap16),
-                                child: Text(
-                                  "${controller.user.userTel}",
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.only(left: BDimens.gap24),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "销售员:${controller.user.nickName}",
                                   style: TextStyle(
-                                      fontSize: BDimens.sp26,
-                                      color: BColors.tipColor),
+                                      fontSize: BDimens.sp28,
+                                      fontWeight: FontWeight.w500),
                                 ),
-                              )
-                            ],
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: BDimens.gap8),
-                            child: Text("门店信息:${controller.user.shopName}",
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                style: TextStyle(
-                                  fontSize: BDimens.sp26,
-                                  color: BColors.tipColor,
-                                )),
-                          )
-                        ],
+                                Container(
+                                  margin: EdgeInsets.only(left: BDimens.gap16),
+                                  child: Text(
+                                    "${controller.user.userTel}",
+                                    style: TextStyle(
+                                        fontSize: BDimens.sp26,
+                                        color: BColors.tipColor),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Container(
+                              // margin: EdgeInsets.only(left: BDimens.gap8),
+                              child: Text("门店信息:${controller.user.shopName}",
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                    fontSize: BDimens.sp26,
+                                    color: BColors.tipColor,
+                                  )),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],

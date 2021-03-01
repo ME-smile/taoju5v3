@@ -85,7 +85,7 @@ class OrderListParentController extends GetxController
     tabList.forEach((e) {
       e.isChecked = e == model;
     });
-    update(["status"]);
+    update(["status", "tab"]);
   }
 
   void selectTime(OrderTimeOptionModel model) {
@@ -111,7 +111,6 @@ class OrderListParentController extends GetxController
   }
 
   void _onTabChange() {
-    print("+++___");
     for (int i = 0; i < tabList.length; i++) {
       tabList[i].isChecked = i == tabController.index;
     }

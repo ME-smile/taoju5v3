@@ -12,7 +12,7 @@ class DataDashBoardController extends GetxController
     with SingleGetTickerProviderMixin {
   List<String> tabList = ["客流统计", "销售统计", "销售分析"];
 
-  List<String> timeList = ["本周", "本月", "本季度", "本年"];
+  List<String> timeList = ["本周", "本月", "本季度", "本年", "更多"];
 
   TabController tabController1;
   TabController tabController2;

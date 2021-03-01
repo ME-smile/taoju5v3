@@ -9,7 +9,7 @@ import 'package:taoju5/utils/json_kit.dart';
 
 class SearchModel {
   List<String> data;
-  SearchModel.fromJson(Map json) {
-    data = JsonKit.asList(json["data"]).cast<String>();
+  SearchModel.fromJson(List json) {
+    data = JsonKit.asList(json).cast<String>();
   }
 }

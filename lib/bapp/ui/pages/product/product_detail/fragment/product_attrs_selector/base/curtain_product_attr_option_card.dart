@@ -8,6 +8,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:taoju5/bapp/domain/model/product/curtain_product_attr_model.dart';
 import 'package:taoju5/bapp/res/b_dimens.dart';
+import 'package:taoju5/bapp/ui/widgets/common/button/x_border_frame.dart';
 
 class CurtainProductAttrOptionCard extends StatelessWidget {
   final CurtainProductAttrOptionModel option;
@@ -19,17 +20,27 @@ class CurtainProductAttrOptionCard extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          CachedNetworkImage(
-            imageUrl: option.picture,
+          XBorderFrame(
+            visible: option.isChecked,
+            child: CachedNetworkImage(
+              imageUrl: option.picture,
+            ),
           ),
-          Text(
-            option.name,
-            style: TextStyle(fontSize: BDimens.gap24),
+          Container(
+            margin: EdgeInsets.only(top: BDimens.gap12),
+            child: Text(
+              option.name,
+              style: TextStyle(fontSize: BDimens.sp24),
+            ),
           ),
-          Text(
-            "${option.price.toStringAsFixed(2)}",
-            style: TextStyle(
-                color: option.price == 0.0 ? Colors.transparent : null),
+          Container(
+            margin: EdgeInsets.only(top: BDimens.gap8),
+            child: Text(
+              "¥${option.price.toStringAsFixed(2)}",
+              style: TextStyle(
+                  fontSize: BDimens.sp24,
+                  color: option.price == 0.0 ? Colors.transparent : null),
+            ),
           )
         ],
       ),

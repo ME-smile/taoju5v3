@@ -36,6 +36,7 @@ class SettingPage extends StatelessWidget {
             Divider(),
             XLabelTile(
               label: "重置密码",
+              onTap: () => Get.toNamed(BAppRoutes.resetPassword),
             ),
             Divider(
               height: BDimens.gap16,
@@ -53,11 +54,17 @@ class SettingPage extends StatelessWidget {
             XLabelTile(
               label: "关于淘居屋",
               trailing: Text(_.versionCode),
+              onTap: () => Get.toNamed(BAppRoutes.appVersion),
             ),
             Divider(),
             XLabelTile(
               label: "售后服务",
               onTap: () => Get.toNamed(BAppRoutes.afterSell),
+            ),
+            Divider(),
+            XLabelTile(
+              label: "我的客服",
+              trailing: Text("18968072319"),
             ),
             Container(
                 margin: EdgeInsets.only(top: BDimens.gap16),

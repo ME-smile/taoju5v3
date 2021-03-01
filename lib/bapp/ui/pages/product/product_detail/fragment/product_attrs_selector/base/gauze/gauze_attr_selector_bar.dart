@@ -19,7 +19,7 @@ class GauzeAttrSelectorBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<GauzeAttrSelectorController>(
       tag: tag,
-      id: tag,
+      id: "attribute",
       builder: (_) {
         return Container(
           child: XSelectorTextField(

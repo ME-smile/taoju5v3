@@ -48,7 +48,8 @@ class ProductDetailFooter extends StatelessWidget {
                         )
                       else
                         ProductActionBar(
-                          onAddToCart: () => Get.toNamed(BAppRoutes.cart),
+                          onAddToCart: () => Get.toNamed(BAppRoutes.commitOrder,
+                              arguments: []),
                           onBuy: () => showFinishedProductAttrModal(context,
                               product: _.product),
                           // onBuy: () => Get.toNamed( BAppRoutes.commitOrder,

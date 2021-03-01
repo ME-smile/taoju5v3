@@ -25,7 +25,7 @@ class OrderDetailProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-          horizontal: BDimens.gap32, vertical: BDimens.gap24),
+          horizontal: BDimens.gap16, vertical: BDimens.gap24),
       child: Column(
         children: [
           Container(
@@ -86,7 +86,8 @@ class OrderDetailProductCard extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.centerRight,
-            padding: EdgeInsets.only(top: BDimens.gap32, bottom: BDimens.gap8),
+            padding: EdgeInsets.only(
+                top: BDimens.gap32, bottom: BDimens.gap8, right: BDimens.gap32),
             child: Text(
               "小计:¥${product.totalPrice}",
               style: TextStyle(

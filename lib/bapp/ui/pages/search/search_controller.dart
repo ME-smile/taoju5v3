@@ -10,17 +10,18 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taoju5/bapp/domain/model/search/search_model.dart';
 import 'package:taoju5/bapp/domain/repository/search/search_repository.dart';
+import 'dart:math' as math;
 
 enum SearchType { customer, order, product }
 
 class SearchController extends GetxController {
   ///[记录搜索历史和用户信息
   SharedPreferences _sp;
-  SearchModel result;
+  List<String> keyList = [];
   Map<SearchType, List<String>> _searchHistory = {
-    SearchType.customer: [],
-    SearchType.order: [],
-    SearchType.product: [],
+    SearchType.customer: <String>[],
+    SearchType.order: <String>[],
+    SearchType.product: <String>[],
   };
 
   Map<SearchType, String> _searchTip = {
@@ -29,12 +30,20 @@ class SearchController extends GetxController {
     SearchType.order: "搜索订单",
   };
 
-  static const int MAX_LENGTH = 10;
+  bool isHistoryVisible = true;
+
+  int get visibleCount => math.min(5, keyList.length);
+
+  List<String> get visibleKeyList => keyList.sublist(0, visibleCount);
+
+  List<String> get unvisibleKeyList => keyList.sublist(visibleCount);
 
   SearchType get type => Get.arguments;
   String get hintText => _searchTip[type];
   List<String> get historyList {
-    return _searchHistory[type];
+    print(type);
+    print(_searchHistory[type]);
+    return _searchHistory[type] ?? [];
   }
 
   TextEditingController textEditingController;
@@ -42,7 +51,7 @@ class SearchController extends GetxController {
   @override
   void onInit() {
     _init();
-    textEditingController = TextEditingController()..addListener(() {});
+    textEditingController = TextEditingController();
     loadData();
     super.onInit();
   }
@@ -74,7 +83,7 @@ class SearchController extends GetxController {
   Future loadData() {
     SearchRepository repository = SearchRepository();
     return repository.search().then((SearchModel value) {
-      result = value;
+      keyList = value.data;
     });
   }
 
@@ -101,7 +110,6 @@ class SearchController extends GetxController {
   }
 
   void clear() {
-    print("+++___");
     historyList?.clear();
     _persist();
     update(["history"]);

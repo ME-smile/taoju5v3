@@ -8,6 +8,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:taoju5/bapp/domain/model/order/order_detail_model.dart';
 import 'package:taoju5/bapp/domain/model/order/order_logistics_model.dart';
+import 'package:taoju5/bapp/domain/model/order/order_mainfest_model.dart';
 import 'package:taoju5/bapp/domain/model/order/order_model.dart';
 import 'package:taoju5/bapp/domain/model/order/order_price_model.dart';
 import 'package:taoju5/bapp/domain/provider/order/order_api.dart';
@@ -177,5 +178,18 @@ class OrderRepository {
 
   ///售后服务
   Future<BaseResponse> aftersell({@required Map params}) =>
-      XDio().post("/api/order/addOrderQuestion", queryParameters: params);
+      _api.aftersell("/api/order/addOrderQuestion", params: params);
+
+  ///商品清单
+
+  Future<OrderMainfestModel> mainfest({Map params}) {
+    return _api
+        .mainfest("/api/order/productList", params: params)
+        .then((BaseResponse response) {
+      if (response.isValid) {
+        return OrderMainfestModel.fromJson(response.data);
+      }
+      throw Future.error(response.message);
+    });
+  }
 }

@@ -11,7 +11,11 @@ abstract class BAppRoutes {
 
   static const debug = '/debug';
 
+  static const dashboard = '/dashboard';
+
   static const login = '/login';
+
+  static const resetPassword = '/login/resetPassword';
 
   static const productList = '/productList';
 
@@ -46,6 +50,10 @@ abstract class BAppRoutes {
   static const orderDetail = '/orderDetail';
 
   static const orderLogistics = "/orderLogistics";
+
+  static const orderMainfest = '/orderMainfest';
+
+  static const orderLog = '/orderLog';
 
   static const commitOrder = '/commitOrder';
 

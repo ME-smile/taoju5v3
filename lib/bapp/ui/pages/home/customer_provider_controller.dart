@@ -7,6 +7,7 @@
 import 'package:get/get.dart';
 import 'package:taoju5/bapp/domain/model/customer/customer_detail_model.dart';
 import 'package:taoju5/bapp/domain/model/customer/customer_model.dart';
+import 'package:taoju5/bapp/ui/pages/order/commit_order/commit_order_controller.dart';
 
 class CustomerProviderController extends GetxController {
   CustomerDetailModel _customer;
@@ -29,20 +30,31 @@ class CustomerProviderController extends GetxController {
   CustomerDetailModel get customer => _customer;
 
   set customer(CustomerDetailModel model) {
+    clear();
     _customer = model;
     update();
+    if (Get.isRegistered<CommitOrderController>()) {
+      Get.find<CommitOrderController>().update(["customer"]);
+    }
   }
 
   setCustomer(CustomerModel model) {
+    clear();
     _customer ??= CustomerDetailModel();
     _customer.id = model.id;
     _customer.name = model.name;
     update();
+    if (Get.isRegistered<CommitOrderController>()) {
+      Get.find<CommitOrderController>().update(["customer"]);
+    }
   }
 
   clear() {
     _customer = null;
     update();
+    if (Get.isRegistered<CommitOrderController>()) {
+      Get.find<CommitOrderController>().update(["customer"]);
+    }
   }
 
   void updateCartCount(int count) {

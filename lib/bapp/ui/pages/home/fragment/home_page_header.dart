@@ -37,13 +37,13 @@ class HomePageHeader extends GetView<UserProviderController> {
               style: TextStyle(
                   fontSize: BDimens.sp24, color: BColors.subTitleColor)),
           Container(
+            width: Get.width,
             margin: EdgeInsets.only(top: BDimens.gap24),
             child: GestureDetector(
               onTap: () => Get.toNamed(BAppRoutes.productList),
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(4)),
                 child: CachedNetworkImage(
-                    width: Get.width,
                     imageUrl: CommonKit.asWebUrl("upload/master.jpg")),
               ),
             ),

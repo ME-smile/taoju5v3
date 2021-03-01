@@ -51,4 +51,8 @@ class LoginRepository {
       throw err;
     });
   }
+
+  Future resetPassword({Map params}) {
+    return _api.resetPassword("/api/member/modifyPassword", params: params);
+  }
 }

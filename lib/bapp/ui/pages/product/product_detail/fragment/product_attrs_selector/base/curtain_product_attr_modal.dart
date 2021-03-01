@@ -12,7 +12,6 @@ import 'package:taoju5/bapp/res/b_dimens.dart';
 import 'package:taoju5/bapp/ui/modal/product/base/x_base_attr_modal.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/base_attr_selector_controller.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/curtain_product_attr_option_card.dart';
-import 'package:taoju5/bapp/ui/widgets/common/button/x_border_frame.dart';
 
 class CurtainProductAttrModal<T extends BaseAttrSelectorController>
     extends StatelessWidget {
@@ -34,32 +33,31 @@ class CurtainProductAttrModal<T extends BaseAttrSelectorController>
       builder: (BuildContext context) {
         return GetBuilder<T>(
           tag: tag,
-          id: tag,
+          id: "attribute",
           builder: (_) {
             return WillPopScope(
               onWillPop: _.reset,
               child: Container(
                 child: GridView.builder(
+                    shrinkWrap: true,
                     padding: EdgeInsets.symmetric(horizontal: BDimens.gap32),
                     physics: BouncingScrollPhysics(),
                     itemCount: _.attr?.optionList?.length ?? 0,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      //横轴间距
-                    ),
+                        crossAxisCount: 4,
+                        mainAxisSpacing: BDimens.gap32,
+                        crossAxisSpacing: BDimens.gap24,
+                        childAspectRatio: .64
+                        //横轴间距
+                        ),
                     itemBuilder: (BuildContext context, int i) {
                       CurtainProductAttrOptionModel option =
                           _.attr.optionList[i];
                       return GestureDetector(
                         behavior: HitTestBehavior.translucent,
-                        onTap: () {
-                          _.select(_.attr, option);
-                        },
-                        child: XBorderFrame(
-                          visible: option.isChecked,
-                          child: CurtainProductAttrOptionCard(
-                            option: option,
-                          ),
+                        onTap: () => _.select(_.attr, option),
+                        child: CurtainProductAttrOptionCard(
+                          option: option,
                         ),
                       );
                     }),

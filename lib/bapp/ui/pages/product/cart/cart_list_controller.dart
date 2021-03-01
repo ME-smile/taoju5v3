@@ -132,8 +132,9 @@ class CartListController extends GetxController {
   Future loadData() {
     loadState = XLoadState.busy;
     update();
-    return _repository.cartList(params: {"client_uid": clientId}).then(
-        (CartPorductModelListWrapper value) {
+    return _repository.cartList(params: {
+      "client_uid": clientId,
+    }).then((CartPorductModelListWrapper value) {
       cartList = value.list;
       if (GetUtils.isNullOrBlank(cartList)) {
         loadState = XLoadState.empty;

@@ -89,6 +89,10 @@ class ProductDetailController extends GetxController {
     }).whenComplete(update);
   }
 
+  Future buy() {}
+
+  Future addToCart() {}
+
   @override
   void onInit() {
     _loadData();

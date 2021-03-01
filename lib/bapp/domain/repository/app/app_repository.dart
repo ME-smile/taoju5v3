@@ -17,7 +17,7 @@ class AppRepository {
         .appInfo("/api/Config/getAppUpgradeInfo", params: params)
         .then((BaseResponse response) {
       if (response.isValid) return AppInfoModel.fromJson(response.data);
-      return Future.error(response.message);
+      throw Future.error(response.message);
     }).catchError((err) {
       throw err;
     });

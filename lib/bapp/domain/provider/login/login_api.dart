@@ -17,4 +17,8 @@ class LoginAPI {
   ///获取验证码
   Future<BaseResponse> getSms(String url, {Map params}) =>
       XDio().post(url, formData: params);
+
+  ///重置密码
+  Future<BaseResponse> resetPassword(String url, {Map params}) =>
+      XDio().post(url, formData: params);
 }

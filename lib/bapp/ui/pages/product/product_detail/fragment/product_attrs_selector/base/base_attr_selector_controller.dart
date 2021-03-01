@@ -31,11 +31,9 @@ abstract class BaseAttrSelectorController extends GetxController {
         o.isChecked = o.id == option.id;
       }
     }
+    print(option.name);
     filter();
-    update([tag]);
-    print("+++++筛选后");
-    print(craftController?.attr?.currentOptionName);
-    print(sectionalbarController?.attr?.currentOptionName);
+    update(["attribute"]);
   }
 
   String get tag => Get.parameters["id"];

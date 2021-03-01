@@ -26,15 +26,15 @@ class OrderDetailFooter extends GetView<OrderDetailController> {
           Row(
             children: [
               Container(
-                margin: EdgeInsets.only(right: BDimens.gap24),
+                margin: EdgeInsets.only(right: BDimens.gap16),
                 color: BColors.foregroundColor,
                 height: 32.h,
-                width: 4.w,
+                width: 6.w,
               ),
               Text(
                 "订单信息",
                 style: TextStyle(
-                    fontSize: BDimens.sp30, fontWeight: FontWeight.w400),
+                    fontSize: BDimens.sp28, fontWeight: FontWeight.w400),
               )
             ],
           ),
@@ -48,11 +48,14 @@ class OrderDetailFooter extends GetView<OrderDetailController> {
                       margin: EdgeInsets.only(top: BDimens.gap8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [Text("订单备注:")],
+                        children: [
+                          Text("订单备注:"),
+                          Text("${controller.order.note}")
+                        ],
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: BDimens.gap16),
+                      padding: EdgeInsets.only(top: BDimens.gap8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -62,7 +65,7 @@ class OrderDetailFooter extends GetView<OrderDetailController> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: BDimens.gap16),
+                      padding: EdgeInsets.only(top: BDimens.gap8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -77,8 +80,7 @@ class OrderDetailFooter extends GetView<OrderDetailController> {
                           controller.order.orderStatus <
                               OrderStatus.toBeInstalled,
                       child: Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: BDimens.gap16),
+                          padding: EdgeInsets.only(top: BDimens.gap8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -92,8 +94,7 @@ class OrderDetailFooter extends GetView<OrderDetailController> {
                               OrderStatus.toBeInstalled &&
                           controller.order.orderStatus <= OrderStatus.finished,
                       child: Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: BDimens.gap16),
+                          padding: EdgeInsets.only(top: BDimens.gap8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -103,7 +104,7 @@ class OrderDetailFooter extends GetView<OrderDetailController> {
                           )),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: BDimens.gap16),
+                      padding: EdgeInsets.only(top: BDimens.gap8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -113,7 +114,7 @@ class OrderDetailFooter extends GetView<OrderDetailController> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: BDimens.gap16),
+                      padding: EdgeInsets.only(top: BDimens.gap8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -123,7 +124,7 @@ class OrderDetailFooter extends GetView<OrderDetailController> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: BDimens.gap16),
+                      padding: EdgeInsets.only(top: BDimens.gap8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

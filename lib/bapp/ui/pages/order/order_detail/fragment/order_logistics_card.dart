@@ -51,7 +51,9 @@ class OrderLogisticsCard extends GetView<OrderDetailController> {
                           color: BColors.subTitleColor)),
                 ),
               ],
-            )
+            ),
+            Spacer(),
+            Icon(BIcons.next, size: BDimens.sp48)
           ],
         ),
       ),

@@ -53,4 +53,8 @@ class OrderAPI {
   ///上传图片
   Future<BaseResponse> uploadImage(String url, {Map params}) =>
       XDio().post(url, formData: params);
+
+  ///商品清单
+  Future<BaseResponse> mainfest(String url, {Map params}) =>
+      XDio().get(url, params: params);
 }

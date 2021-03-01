@@ -78,7 +78,7 @@ class CurtainProductAttrModel {
 extension CurtainProductAttrModelKit on CurtainProductAttrModel {
   ///当前选中的[option]
   List<CurtainProductAttrOptionModel> get currentSelectedOptionList =>
-      optionList.where((e) => e.isChecked && e.hasConfirmed).toList();
+      optionList.where((e) => e.isChecked).toList();
 
   String get currentOptionName =>
       currentSelectedOptionList.map((e) => e.name).join("/");

@@ -14,6 +14,7 @@ import 'package:taoju5/bapp/res/b_colors.dart';
 import 'package:taoju5/bapp/res/b_dimens.dart';
 import 'package:taoju5/bapp/ui/modal/base/x_base_modal.dart';
 import 'package:taoju5/config/app_config.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Future showShareModal(BuildContext context,
     {@required TaojuwuShareModel shareModel}) {
@@ -59,7 +60,7 @@ Future showShareModal(BuildContext context,
       context: context,
       builder: (BuildContext context) {
         return XBaseModal(
-            height: MediaQuery.of(context).size.height * .28,
+            height: 450.h,
             builder: (BuildContext context) {
               return Column(
                 children: [

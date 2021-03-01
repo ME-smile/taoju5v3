@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taoju5/bapp/res/b_dimens.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/order_detail_controller.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/widget/order_cancel_button.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/widget/order_remind_audit_button.dart';
@@ -19,16 +20,20 @@ class OrderDetailBottomActionBar extends GetView<OrderDetailController> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(BDimens.gap16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           OrderCancelButton(),
-          Row(
-            children: [
-              OrderRemindAuditButton(),
-              OrderRemindMeasureButton(),
-              OrderRemindInstallButton(),
-            ],
+          Container(
+            margin: EdgeInsets.only(left: BDimens.gap24),
+            child: Row(
+              children: [
+                OrderRemindAuditButton(),
+                OrderRemindMeasureButton(),
+                OrderRemindInstallButton(),
+              ],
+            ),
           )
         ],
       ),

@@ -6,6 +6,8 @@
  */
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:taoju5/bapp/ui/pages/order/commit_order/commit_order_controller.dart';
+import 'package:taoju5/bapp/ui/pages/order/commit_order/fragment/commit_order_body.dart';
 import 'package:taoju5/constants/x_gender.dart';
 import 'package:taoju5/bapp/domain/model/customer/customer_detail_model.dart';
 import 'package:taoju5/bapp/domain/repository/customer/customer_repository.dart';
@@ -129,6 +131,9 @@ class CustomerAddressEditController extends GetxController {
     customerProviderController.customer = customer;
     customerProviderController.customer?.address?.addressId = addressId;
     customerProviderController.update(["address"]);
+    if (Get.isRegistered<CommitOrderController>()) {
+      Get.find<CommitOrderController>().update(["customer"]);
+    }
   }
 
   @override

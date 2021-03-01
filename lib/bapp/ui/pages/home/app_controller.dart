@@ -68,7 +68,7 @@ class AppController extends GetxController {
 
   Future _upgradeApp() async {
     bool hasNewVersion = await _hasNewAppVersion();
-    if (hasNewVersion) {
+    if (!hasNewVersion) {
       AppUpgrade.appUpgrade(
         Get.context,
         Future.value(AppUpgradeInfo(

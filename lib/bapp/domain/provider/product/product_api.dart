@@ -33,4 +33,14 @@ class ProductAPI {
   ///软装详情
   Future<BaseResponse> softDesignProductDetail(String url, {Map params}) =>
       XDio().get(url, params: params);
+
+  Future<BaseResponse> isLiked(String url, {Map params}) =>
+      XDio().get(url, params: params);
+
+  Future<BaseResponse> collect(String url, {Map params}) =>
+      XDio().post(url, queryParameters: params);
+
+  //加入购物车
+  Future<BaseResponse> addToCart(String url, {Map params}) =>
+      XDio().post(url, formData: params);
 }

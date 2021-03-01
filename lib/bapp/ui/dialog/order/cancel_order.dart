@@ -7,6 +7,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taoju5/bapp/res/b_dimens.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/order_detail_controller.dart';
 import 'package:taoju5/bapp/ui/widgets/common/button/x_future_button.dart';
 import 'package:taoju5/bapp/ui/widgets/common/textfield/x_sized_text_field.dart';
@@ -26,6 +27,7 @@ Future showCancelOrderDialog(BuildContext context) {
               ),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   XSizedTextField(
                     autoFocus: true,
@@ -39,10 +41,13 @@ Future showCancelOrderDialog(BuildContext context) {
                         onPressed: Get.back,
                         child: Text("取消"),
                       ),
-                      XFutureButton(
-                          onFuture: () => _.cancelOrder(params),
-                          onSuccess: Get.back,
-                          child: Text("确定")),
+                      Container(
+                        margin: EdgeInsets.only(left: BDimens.gap24),
+                        child: XFutureButton(
+                            onFuture: () => _.cancelOrder(params),
+                            onSuccess: Get.back,
+                            child: Text("确定")),
+                      ),
                     ],
                   )
                 ],

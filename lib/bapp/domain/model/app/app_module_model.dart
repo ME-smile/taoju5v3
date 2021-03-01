@@ -26,6 +26,11 @@ class AppModuleModelListWrapper {
         icon: 'customer.png',
         onTap: () => Get.toNamed(BAppRoutes.customerList, arguments: false)),
     AppModuleModel(
+        title: '数据中心',
+        description: '销售统计,清晰明了',
+        icon: 'data_center.png',
+        onTap: () => Get.toNamed(BAppRoutes.dashBoard)),
+    AppModuleModel(
         title: '设置',
         description: '问题反馈，软件帮助',
         icon: 'settings.png',

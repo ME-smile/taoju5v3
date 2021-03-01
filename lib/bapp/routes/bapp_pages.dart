@@ -23,6 +23,8 @@ import 'package:taoju5/bapp/ui/pages/dashboard/data_dash_board_page.dart';
 import 'package:taoju5/bapp/ui/pages/home/home_page.dart';
 import 'package:taoju5/bapp/ui/pages/login/login/login_binding.dart';
 import 'package:taoju5/bapp/ui/pages/login/login/login_page.dart';
+import 'package:taoju5/bapp/ui/pages/login/reset_pwd/reset_pwd_binding.dart';
+import 'package:taoju5/bapp/ui/pages/login/reset_pwd/reset_pwd_page.dart';
 import 'package:taoju5/bapp/ui/pages/not_found_404/not_found_404_page.dart';
 import 'package:taoju5/bapp/ui/pages/order/commit_order/commit_order_binding.dart';
 import 'package:taoju5/bapp/ui/pages/order/commit_order/commit_order_page.dart';
@@ -31,6 +33,10 @@ import 'package:taoju5/bapp/ui/pages/order/order_detail/order_detail_binding.dar
 import 'package:taoju5/bapp/ui/pages/order/order_detail/order_detail_page.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/logistics/order_logistics_binding.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/logistics/order_logistics_page.dart';
+import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/mainfest/order_mainfest_binding.dart';
+import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/mainfest/order_mainfest_page.dart';
+import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/order_log/order_log_binding.dart';
+import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/order_log/order_log_page.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_list/order_list_binding.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_list/order_list_page.dart';
 import 'package:taoju5/bapp/ui/pages/product/cart/cart_binding.dart';
@@ -84,10 +90,16 @@ class BAppPages {
         page: () => DebugEnvPage(),
         binding: DebugBinding()),
 
+    ///登陆相关
     GetPage(
         name: BAppRoutes.login,
         page: () => LoginPage(),
         binding: LoginBinding()),
+
+    GetPage(
+        name: BAppRoutes.resetPassword,
+        page: () => ResetPwdPage(),
+        binding: ResetPwdBinding()),
 
     ///商品相关
     GetPage(
@@ -170,6 +182,18 @@ class BAppPages {
         name: BAppRoutes.orderLogistics + "/:id",
         page: () => OrderLogisticsPage(),
         binding: OrderLogisticsBinding()),
+
+    ///商品清单
+    GetPage(
+        name: BAppRoutes.orderMainfest + "/:id",
+        page: () => OrderMainfestPage(),
+        binding: OrderMainfestBinding()),
+
+    ///订单日志
+    GetPage(
+        name: BAppRoutes.orderLog + "/:id",
+        page: () => OrderLogPage(),
+        binding: OrderLogBinding()),
 
     GetPage(
         name: BAppRoutes.commitOrder + "/:orderType",

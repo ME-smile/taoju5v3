@@ -6,6 +6,7 @@
  */
 import 'package:flutter/material.dart';
 import 'package:taoju5/config/app_manager.dart';
+import 'package:get/get.dart';
 
 class AppVersionPage extends StatefulWidget {
   const AppVersionPage({Key key}) : super(key: key);
@@ -31,10 +32,17 @@ class _AppVersionPageState extends State<AppVersionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Get.theme.primaryColor,
       appBar: AppBar(
         title: Text("版本信息"),
       ),
-      body: Text(versionCode),
+      body: Center(
+          child: Column(
+        children: [
+          Image.asset("assets/images/logo.png"),
+          Text(versionCode),
+        ],
+      )),
     );
   }
 }

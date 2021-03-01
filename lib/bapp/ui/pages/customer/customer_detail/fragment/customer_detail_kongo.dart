@@ -31,25 +31,7 @@ class CustomerDetailKongo extends StatelessWidget {
           ]),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          // for (_CustomerDetailKongoModel kongo in list)
-          //   GestureDetector(
-          //     onTap: kongo.onTap,
-          //     child: Column(
-          //       children: [
-          //         Padding(
-          //           padding: EdgeInsets.symmetric(vertical: BDimens.gap16),
-          //           child: Image.asset(
-          //               AppConfig.imagePrefix + kongo.icon),
-          //         ),
-          //         Padding(
-          //           padding: EdgeInsets.only(bottom: BDimens.gap16),
-          //           child: Text(kongo.title),
-          //         )
-          //       ],
-          //     ),
-          //   )
-        ],
+        children: [],
       ),
     );
   }

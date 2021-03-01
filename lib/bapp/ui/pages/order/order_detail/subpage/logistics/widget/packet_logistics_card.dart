@@ -47,9 +47,10 @@ class _PacketLogisticsCardState extends State<PacketLogisticsCard> {
             itemCount: visibleCount,
           ),
           Visibility(
+              visible: true,
               child: XExpansionPanel(
                   title: Visibility(
-                    visible: !isOpen,
+                    visible: isOpen,
                     child: ActionChip(
                       backgroundColor: Get.theme.primaryColor,
                       label: Text("更多快递信息"),
@@ -61,10 +62,10 @@ class _PacketLogisticsCardState extends State<PacketLogisticsCard> {
                     ),
                   ),
                   children: [
-                for (PacketStationModel item in hiddenStation)
-                  PacketLogisticsStationCard(
-                      station: item, stationList: hiddenStation)
-              ]))
+                    for (PacketStationModel item in hiddenStation)
+                      PacketLogisticsStationCard(
+                          station: item, stationList: hiddenStation)
+                  ]))
         ],
       ),
     );
