@@ -16,7 +16,7 @@ String getAppName({AppEnv env = AppEnv.$b, AppMode mode = AppMode.debug}) {
   return map[{env, mode}.toString()];
 }
 
-String getServerHost({AppEnv env = AppEnv.$b, AppMode mode = AppMode.debug}) {
+String getServerHost({AppEnv env = AppEnv.$b, AppMode mode = AppMode.release}) {
   Map<String, String> map = {
     {AppEnv.$b, AppMode.debug}.toString(): "http://buyi.taoju5.com",
     {AppEnv.$b, AppMode.release}.toString(): "http://www.taoju5.com",

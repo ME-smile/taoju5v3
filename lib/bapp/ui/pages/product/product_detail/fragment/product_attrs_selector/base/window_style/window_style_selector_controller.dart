@@ -6,8 +6,10 @@
  */
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:taoju5/bapp/domain/model/order/order_detail_model.dart';
 import 'package:taoju5/bapp/domain/model/window/window_style_model.dart';
 import 'package:taoju5/bapp/ui/pages/home/taojuwu_controller.dart';
+import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/measure_data/order_measure_data_controller.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/window_pattern/window_pattern_selector_controller.dart';
 
 class WindowStyleSelectorController extends GetxController {
@@ -20,16 +22,25 @@ class WindowStyleSelectorController extends GetxController {
       Get.find<WindowPatternSelectorController>(tag: tag);
   WindowStyleOptionModel get style {
     List<WindowStyleOptionModel> list = taojuwuController.style.styleList;
-    for (int i = 0; i < list.length; i++) {
-      WindowStyleOptionModel e = list[i];
-      if (RegExp(windowPatternSelectorController.value).hasMatch(e.name))
-        return e;
+
+    if (GetUtils.isNullOrBlank(list)) {
+      return null;
     }
-    return GetUtils.isNullOrBlank(list) ? null : list?.first;
+    if (Get.isRegistered<OrderMeasureDataController>()) {
+      OrderMeasureDataController controller =
+          Get.find<OrderMeasureDataController>();
+      return list.firstWhere(
+          (e) => RegExp(controller.measureData.windowPattern).hasMatch(e.name),
+          orElse: () => list?.first);
+    } else {
+      return list.firstWhere(
+          (e) => RegExp(windowPatternSelectorController.value).hasMatch(e.name),
+          orElse: () => list?.first);
+    }
   }
 
   List<WindowInstallModeOptionModel> get installModeOptionList {
-    if (style == null) return null;
+    if (style == null) return [];
     return style.installModeOptionList;
   }
 
@@ -41,6 +52,7 @@ class WindowStyleSelectorController extends GetxController {
 
   List<WindowOpenModeOptionModel> get openModeOptionList {
     if (style == null) return null;
+
     return style.openModeOptionList;
   }
 
@@ -99,6 +111,39 @@ class WindowStyleSelectorController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    if (Get.isRegistered<OrderMeasureDataController>()) {
+      _initWithOrderMeasureData();
+    }
+  }
+
+  void _initWithOrderMeasureData() {
+    OrderMeasureDataController controller =
+        Get.find<OrderMeasureDataController>();
+    OrderMeasureDataModel measureData = controller.measureData;
+    List<WindowOpenModeOptionModel> list = style.openModeOptionList;
+
+    list?.forEach((e) {
+      e.isChecked = RegExp(measureData.openModeName)?.hasMatch(e.name);
+      for (WindowSubopenModeModel o in e.suboptionList) {
+        List<String> arr = measureData.openMode.split(";");
+        for (String str in arr) {
+          String key = str?.split(":")?.first?.trim();
+          String val = str?.split(":")?.last?.trim();
+          if (o.title.contains(key)) {
+            o.optionList.forEach((p) {
+              p.isChecked = p.name.contains(val);
+            });
+          }
+        }
+      }
+    });
+  }
+
+  void _saveToOrderMeasureData() {
+    OrderMeasureDataController controller =
+        Get.find<OrderMeasureDataController>();
+    controller.measureData.newOpenMode = currentOpenModeOption.name;
+    controller.update(["openMode"]);
   }
 
   void confirm() {
@@ -109,5 +154,8 @@ class WindowStyleSelectorController extends GetxController {
         element.isConfirmed = element.isChecked;
       });
     });
+    if (Get.isRegistered<OrderMeasureDataController>()) {
+      _saveToOrderMeasureData();
+    }
   }
 }

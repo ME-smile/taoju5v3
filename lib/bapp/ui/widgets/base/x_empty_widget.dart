@@ -7,7 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:taoju5/bapp/ui/widgets/common/x_animation_image.dart';
-import 'package:taoju5/config/app_config.dart';
 
 class XEmptyWidget extends StatelessWidget {
   final Function onTap;
@@ -18,7 +17,7 @@ class XEmptyWidget extends StatelessWidget {
     return GestureDetector(
         onTap: onTap,
         child: XAnimationImage(
-          AppConfig.imagePrefix + "empty.png",
+          "assets/images/" + "empty.png",
           description: "什么也没有呢～",
         ));
   }

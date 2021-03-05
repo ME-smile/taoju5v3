@@ -57,4 +57,8 @@ class OrderAPI {
   ///商品清单
   Future<BaseResponse> mainfest(String url, {Map params}) =>
       XDio().get(url, params: params);
+
+  ///订单编辑记录
+  Future<BaseResponse> orderLog(String url, {Map params}) =>
+      XDio().get(url, params: params);
 }

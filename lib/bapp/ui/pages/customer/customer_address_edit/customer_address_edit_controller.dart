@@ -7,7 +7,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:taoju5/bapp/ui/pages/order/commit_order/commit_order_controller.dart';
-import 'package:taoju5/bapp/ui/pages/order/commit_order/fragment/commit_order_body.dart';
 import 'package:taoju5/constants/x_gender.dart';
 import 'package:taoju5/bapp/domain/model/customer/customer_detail_model.dart';
 import 'package:taoju5/bapp/domain/repository/customer/customer_repository.dart';

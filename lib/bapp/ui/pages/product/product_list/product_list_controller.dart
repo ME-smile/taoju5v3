@@ -15,9 +15,11 @@ import 'package:taoju5/bapp/domain/repository/product/product_repository.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_list/fragment/product_list_sorter/product_list_sorter_panel.dart';
 import 'package:taoju5/bapp/ui/widgets/base/x_view_state.dart';
 import 'package:taoju5/bapp/ui/widgets/common/modal/x_popdown_modal.dart';
+import 'package:taoju5/xdio/x_dio.dart';
 
 class ProductListParentController extends GetxController
     with SingleGetTickerProviderMixin {
+  ProductRepository _repository = ProductRepository();
   List<ProductTabModel> tabList = [
     ProductTabModel(name: "窗帘", id: 0),
     ProductTabModel(name: "床品", id: 1),
@@ -40,9 +42,24 @@ class ProductListParentController extends GetxController
 
   TabController tabController;
 
+  Future loadData() {
+    return _repository.categoryList().then((BaseResponse response) {
+      if (response.isValid) {
+        List list = response.data;
+        List<ProductTabModel> _tabList = [];
+        for (int i = 0; i < list.length; i++) {
+          _tabList.add(ProductTabModel(name: list[i], id: i));
+        }
+        tabList = _tabList;
+        update(["tab"]);
+      }
+    });
+  }
+
   @override
   void onInit() {
     tabController = TabController(length: tabList.length, vsync: this);
+    loadData();
     super.onInit();
   }
 

@@ -6,7 +6,6 @@
  */
 import 'package:flutter/material.dart';
 import 'package:taoju5/bapp/res/b_colors.dart';
-import 'package:taoju5/config/app_config.dart';
 
 class NotFound404Page extends StatelessWidget {
   const NotFound404Page({Key key}) : super(key: key);
@@ -20,7 +19,7 @@ class NotFound404Page extends StatelessWidget {
       ),
       body: Container(
         height: double.maxFinite,
-        child: Image.asset(AppConfig.imagePrefix + "404.png"),
+        child: Image.asset("assets/images/" + "404.png"),
       ),
     );
   }

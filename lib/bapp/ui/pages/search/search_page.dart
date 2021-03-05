@@ -22,7 +22,7 @@ class SearchPage extends GetView<SearchController> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: BColors.primaryColor,
-        resizeToAvoidBottomPadding: false,
+        // resizeToAvoidBottomPadding: false,
         resizeToAvoidBottomInset: false,
         appBar: XSearchBar(
           onSearch: controller.addSearchItem,

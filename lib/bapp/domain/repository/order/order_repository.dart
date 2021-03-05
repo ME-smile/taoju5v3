@@ -7,6 +7,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:taoju5/bapp/domain/model/order/order_detail_model.dart';
+import 'package:taoju5/bapp/domain/model/order/order_log_model.dart';
 import 'package:taoju5/bapp/domain/model/order/order_logistics_model.dart';
 import 'package:taoju5/bapp/domain/model/order/order_mainfest_model.dart';
 import 'package:taoju5/bapp/domain/model/order/order_model.dart';
@@ -190,6 +191,18 @@ class OrderRepository {
         return OrderMainfestModel.fromJson(response.data);
       }
       throw Future.error(response.message);
+    });
+  }
+
+  ///订单编辑记录
+  Future<OrderLogModel> orderLog({Map params}) {
+    return _api
+        .orderLog("/api/order/getMeasureInstallRecords", params: params)
+        .then((BaseResponse response) {
+      if (response.isValid) {
+        return OrderLogModel.fromJson(response.data);
+      }
+      return Future.error(response.message);
     });
   }
 }

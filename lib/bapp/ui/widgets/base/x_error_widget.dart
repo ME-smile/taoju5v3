@@ -7,7 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:taoju5/bapp/ui/widgets/common/x_animation_image.dart';
-import 'package:taoju5/config/app_config.dart';
 
 class XErrorWidget extends StatelessWidget {
   final Function onTap;
@@ -18,7 +17,7 @@ class XErrorWidget extends StatelessWidget {
     return GestureDetector(
         onTap: onTap,
         child: XAnimationImage(
-          AppConfig.imagePrefix + "net_err.png",
+          "assets/images/" + "net_err.png",
           description: "加载失败,请点击重试",
         ));
   }

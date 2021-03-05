@@ -23,6 +23,7 @@ import 'package:taoju5/bapp/ui/widgets/base/x_view_state.dart';
 import 'package:taoju5/bapp/domain/model/product/curtain_product_attr_model.dart';
 
 import 'fragment/product_attrs_selector/base/accessory/accessory_attr_selector_controller.dart';
+import 'fragment/product_attrs_selector/base/base_attr_selector_controller.dart';
 import 'fragment/product_attrs_selector/base/craft/craft_attr_selector_controller.dart';
 import 'fragment/product_attrs_selector/base/valance/valance_attr_selector_controller.dart';
 import 'fragment/product_attrs_selector/base/window_pattern/window_pattern_selector_controller.dart';
@@ -31,6 +32,36 @@ import 'fragment/product_attrs_selector/base/window_style/window_style_selector_
 class MeasureDataParamsModel {
   String width;
   String height;
+}
+
+class CurtainProductAtrrParamsModel {
+  String tag;
+
+  CurtainProductAtrrParamsModel({@required this.tag});
+
+  List get _controllers => [
+        // Get.find<RoomAttrSelectorController>(tag: tag),
+        Get.find<GauzeAttrSelectorController>(tag: tag),
+        Get.find<CraftAttrSelectorController>(tag: tag),
+        Get.find<SectionalbarAttrSelectorController>(tag: tag),
+        Get.find<RibouxAttrSelectorController>(tag: tag),
+        Get.find<ValanceAttrSelectorController>(tag: tag),
+        Get.find<AccessoryAttrSelectorController>(tag: tag),
+        Get.find<SizeSelectorController>(tag: tag)
+      ];
+
+  Map get params {
+    Map map = {};
+    _controllers.forEach((e) {
+      if (e is BaseAttrSelectorController) {
+        map.addAll(e.attr.params);
+      }
+      if (e is SizeSelectorController) {
+        map.addAll(e.params);
+      }
+    });
+    return map;
+  }
 }
 
 class ProductDetailController extends GetxController {

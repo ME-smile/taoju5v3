@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taoju5/bapp/routes/bapp_pages.dart';
 import 'package:taoju5/bapp/ui/pages/home/customer_provider_controller.dart';
-import 'package:taoju5/config/app_config.dart';
 
 class XCustomerChooseButton extends StatelessWidget {
   final bool enabled;
@@ -25,7 +24,7 @@ class XCustomerChooseButton extends StatelessWidget {
           onPressed: enabled
               ? () => Get.toNamed(BAppRoutes.customerEdit + "/1")
               : null,
-          icon: Image.asset(AppConfig.imagePrefix + "customer_badge.png"),
+          icon: Image.asset("assets/images/" + "customer_badge.png"),
           label: Text(
             _?.abbrName,
             maxLines: 1,

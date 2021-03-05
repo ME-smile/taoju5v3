@@ -37,7 +37,6 @@ class _ModifyOrderPriceModal extends StatelessWidget {
           builder: (BuildContext context) {
             return Scaffold(
               backgroundColor: Get.theme.primaryColor,
-              resizeToAvoidBottomInset: false,
               body: SizedBox.expand(
                 child: Container(
                   color: Get.theme.primaryColor,

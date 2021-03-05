@@ -13,7 +13,6 @@ import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_att
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taoju5/bapp/ui/widgets/common/button/x_check_button.dart';
-import 'package:taoju5/config/app_config.dart';
 
 Future showWindowPatternModal({@required String tag}) {
   return showCupertinoModalPopup(
@@ -61,7 +60,7 @@ Future showWindowPatternModal({@required String tag}) {
                                               width: 156.w,
                                               onPresss: () => _.select(e, o),
                                               child: Image.asset(
-                                                AppConfig.imagePrefix + o.img,
+                                                "assets/images/" + o.img,
                                               )),
                                         )
                                     ],

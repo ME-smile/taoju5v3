@@ -35,12 +35,17 @@ import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/logistics/order_
 import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/logistics/order_logistics_page.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/mainfest/order_mainfest_binding.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/mainfest/order_mainfest_page.dart';
+import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/measure_data/order_measure_data_binding.dart';
+import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/measure_data/order_measure_data_edit_page.dart';
+import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/measure_data/order_measure_data_page.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/order_log/order_log_binding.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_detail/subpage/order_log/order_log_page.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_list/order_list_binding.dart';
 import 'package:taoju5/bapp/ui/pages/order/order_list/order_list_page.dart';
 import 'package:taoju5/bapp/ui/pages/product/cart/cart_binding.dart';
 import 'package:taoju5/bapp/ui/pages/product/cart/cart_page.dart';
+import 'package:taoju5/bapp/ui/pages/product/cart/subpage/modify_curtain_product_attr/modify_curtain_product_attr_binding.dart';
+import 'package:taoju5/bapp/ui/pages/product/cart/subpage/modify_curtain_product_attr/modify_curtain_product_attr_page.dart';
 import 'package:taoju5/bapp/ui/pages/product/collection/collection_binding.dart';
 import 'package:taoju5/bapp/ui/pages/product/collection/collection_page.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/product_detail_binding.dart';
@@ -140,6 +145,12 @@ class BAppPages {
         page: () => CartPage(),
         binding: CartBinding()),
 
+    ///修改购物车里面的商品属性
+    GetPage(
+        name: BAppRoutes.modifyCurtainProductAttr + "/:id",
+        page: () => ModifyCurtainProductAttrPage(),
+        binding: ModifyCurtainProductAttrBinding()),
+
     ///填写测装数据
     GetPage(
       name: BAppRoutes.editMeasureData + "/:id",
@@ -194,6 +205,18 @@ class BAppPages {
         name: BAppRoutes.orderLog + "/:id",
         page: () => OrderLogPage(),
         binding: OrderLogBinding()),
+
+    ///测装数据
+    GetPage(
+        name: BAppRoutes.orderMeasureData + "/:id",
+        page: () => OrderMeasureDataPage(),
+        binding: OrderMeasureDataBinding()),
+
+    /// 修改打开方式
+    GetPage(
+        name: BAppRoutes.orderMeasureDataEdit + "/:id",
+        page: () => OrderMeasureDataEditPage(),
+        binding: OrderMeasureDataBinding()),
 
     GetPage(
         name: BAppRoutes.commitOrder + "/:orderType",

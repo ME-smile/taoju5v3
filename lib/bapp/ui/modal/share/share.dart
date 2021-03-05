@@ -13,7 +13,7 @@ import 'package:taoju5/bapp/domain/model/share/taojuwu_share_model.dart';
 import 'package:taoju5/bapp/res/b_colors.dart';
 import 'package:taoju5/bapp/res/b_dimens.dart';
 import 'package:taoju5/bapp/ui/modal/base/x_base_modal.dart';
-import 'package:taoju5/config/app_config.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Future showShareModal(BuildContext context,
@@ -93,8 +93,7 @@ Future showShareModal(BuildContext context,
                                   behavior: HitTestBehavior.opaque,
                                   child: Column(
                                     children: [
-                                      Image.asset(
-                                          AppConfig.imagePrefix + e.icon),
+                                      Image.asset("assets/images/" + e.icon),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
                                             vertical: BDimens.gap16),

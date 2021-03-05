@@ -109,4 +109,10 @@ class BColors {
   static const Color inputBorderColor = Color(0xFFCECECE);
 
   static const Color maskColor = Colors.black38;
+
+  static const Color timeLineColor = Color(0xFFD3D3D3);
+
+  static const Color timePointColor = Color(0xFF242424);
+
+  static const Color actionChipBorderColor = Color(0xFF707070);
 }

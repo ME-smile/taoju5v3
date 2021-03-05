@@ -32,18 +32,17 @@ class AppConfig {
   static const weCharShareUniversalLink = 'https://ii1vy.share2dlink.com/';
 
   static bool get isDebug => mode == AppMode.debug;
-
   static bool get isPro => bool.fromEnvironment('dart.vm.product');
 
   static bool get isBEndApp => env == AppEnv.$b;
 
   static bool get isCEndApp => env == AppEnv.$c;
 
-  static Future syncConfig() {
+  static Future syncConfig({bool isDebug = true, bool is$B = true}) {
     return SharedPreferences.getInstance().then((SharedPreferences sp) {
       AppConfig.mode =
-          (sp.getBool("isDebug") ?? true) ? AppMode.debug : AppMode.release;
-      AppConfig.env = (sp.getBool("isBEnd") ?? true) ? AppEnv.$b : AppEnv.$c;
+          (sp.getBool("isDebug") ?? isDebug) ? AppMode.debug : AppMode.release;
+      AppConfig.env = (sp.getBool("isBEnd") ?? is$B) ? AppEnv.$b : AppEnv.$c;
     });
   }
 

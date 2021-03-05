@@ -18,8 +18,6 @@ import 'package:taoju5/bapp/ui/widgets/bloc/x_swiper.dart';
 import 'package:taoju5/bapp/ui/widgets/bloc/x_thumbnail_card.dart';
 import 'dart:math';
 
-import 'package:taoju5/config/app_config.dart';
-
 class SceneDesignProductSection extends StatelessWidget {
   final List<DesignProductModel> productList;
   const SceneDesignProductSection({Key key, this.productList = const []})
@@ -92,7 +90,7 @@ class _SceneDesignProductCard extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(6)),
                         child: Image.asset(
-                          AppConfig.imagePrefix + "shadow_mask.png",
+                          "assets/images/" + "shadow_mask.png",
                           width: Get.width,
                           fit: BoxFit.fitWidth,
                         ),

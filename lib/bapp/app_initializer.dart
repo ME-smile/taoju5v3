@@ -10,6 +10,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get_utils/src/platform/platform.dart';
 import 'package:taoju5/bapp/res/b_icons.dart';
 import 'package:taoju5/config/app_config.dart';
+
 import 'package:taoju5/config/sdk_manager/sdk_manager.dart';
 import 'package:taoju5/storage/storage_manager.dart';
 
@@ -67,7 +68,8 @@ abstract class AppInitializer {
   }
 
   static Future _initAppConfig() async {
-    await AppConfig.syncConfig();
+    ///TODO AppConfig修改选项
+    await AppConfig.syncConfig(isDebug: true, is$B: true);
   }
 
   static Future _initWidgetBinding() async {

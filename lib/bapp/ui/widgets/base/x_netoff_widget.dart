@@ -6,7 +6,6 @@
  */
 import 'package:flutter/material.dart';
 import 'package:taoju5/bapp/ui/widgets/common/x_animation_image.dart';
-import 'package:taoju5/config/app_config.dart';
 
 class XNetoffWidget extends StatelessWidget {
   final Function onTap;
@@ -17,7 +16,7 @@ class XNetoffWidget extends StatelessWidget {
     return GestureDetector(
         onTap: onTap,
         child: XAnimationImage(
-          AppConfig.imagePrefix + "net_off.png",
+          "assets/images/" + "net_off.png",
           description: "哎呀，网络出错了，重新加载一下试试～",
         ));
   }

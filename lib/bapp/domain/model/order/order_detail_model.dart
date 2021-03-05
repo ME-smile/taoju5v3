@@ -11,6 +11,7 @@ import 'package:taoju5/bapp/domain/model/order/order_type.dart';
 import 'package:taoju5/bapp/domain/model/order/refund_status.dart';
 import 'package:taoju5/bapp/domain/model/product/product_type.dart';
 import 'package:taoju5/utils/json_kit.dart';
+import 'package:taoju5/utils/x_logger.dart';
 
 import 'order_detail_product_model.dart';
 
@@ -38,6 +39,8 @@ class OrderDetailModel {
   String actualMeasureTime;
   String installTime;
   String actualInstallTime;
+  bool isMeasureTimeChanged;
+  bool isInstallTimeChanged;
 
   List<OrderDetailProductModel> productList;
 
@@ -55,6 +58,11 @@ class OrderDetailModel {
 
   String deltaPrice;
   String modifyPriceNote;
+
+  String station;
+  String arriveAt;
+
+  List<String> manualscriptPictureList;
 
   OrderDetailModel.fromJson(Map json) {
     id = json['order_id'];
@@ -86,10 +94,22 @@ class OrderDetailModel {
     actualMeasureTime = JsonKit.formatDateTime(
         JsonKit.getDateTimeFromMillseconds(json["reality_measure_time"]));
 
+    isMeasureTimeChanged = JsonKit.asBool(json["measure_adjustment"]);
+
+    isInstallTimeChanged = JsonKit.asBool(json["install_adjustment"]);
+
     productList = JsonKit.asList(json["order_goods"])
         .map((e) => OrderDetailProductModel.fromJson(e))
         .cast<OrderDetailProductModel>()
         .toList();
+
+    station = json["AcceptStation"];
+    arriveAt = json["AcceptTime"];
+
+    manualscriptPictureList =
+        JsonKit.asList(json["measure_manuscripts_picture"])
+            .map((e) => JsonKit.asWebUrl(e))
+            .toList();
   }
 }
 
@@ -105,6 +125,12 @@ extension OrderDetailModelKit on OrderDetailModel {
   }
 
   bool get canRefund => refundStatus == RefundStatus.refundable;
+
+  String get receiverNameAttr => receiverName.length > 12
+      ? receiverName.substring(0, 7) +
+          "..." +
+          receiverName.substring(receiverName.length - 3)
+      : receiverName;
 
   set refundStatus(RefundStatus status) {
     Map<RefundStatus, int> map = {
@@ -125,4 +151,68 @@ extension OrderDetailModelKit on OrderDetailModel {
   bool get isAllProductCanceled => GetUtils.isNullOrBlank(productList)
       ? true
       : productList.any((e) => e.refundStatus != RefundStatus.refundable);
+}
+
+class OrderMeasureDataModel {
+  int id;
+  int orderId;
+  int productId;
+  int orderProductId;
+  String note;
+  String picture;
+  String room;
+  String windowType;
+  String windowPattern;
+  String width;
+  String height;
+  String widthNote;
+  String heightNote;
+  String installMode;
+  String openMode;
+  String newOpenMode;
+  String installationSurfaceMaterial;
+  String plasterLine;
+
+  String frameWidth;
+  String boxSize;
+  String plasterLineHeight;
+
+  String newDeltaY;
+  String deltaY;
+
+  List<String> pictures;
+
+  OrderMeasureDataModel.fromJson(Map json) {
+    XLogger.v(json);
+    id = json["id"];
+    orderId = json["order_id"];
+    productId = json["goods_id"];
+    orderProductId = json["order_goods_id"];
+    note = json["remark"];
+    room = json["install_room"];
+    windowType = json["window_measure_type"];
+    windowPattern = json["window_type"];
+    pictures = '${json["picture"]}'
+        .split(",")
+        .map((e) => JsonKit.asWebUrl(e))
+        .toList();
+    installMode = json["install_type"];
+    openMode = json["open_type"];
+    width = "${json["width"]}";
+    widthNote = json["width_explain"];
+    height = "${json["height"]}";
+    heightNote = json["height_explain"];
+    installationSurfaceMaterial = json["install_face_materials"];
+    plasterLine =
+        JsonKit.asString(json['plaster_line'], trueDesc: "有", falseDesc: "没有");
+    frameWidth = json["frame_width"];
+    boxSize = json["curtain_box_size"];
+    plasterLineHeight = json["top_height"];
+    deltaY = json["vertical_ground_height"];
+  }
+}
+
+extension OrderMeasureDataModelKit on OrderMeasureDataModel {
+  String get openModeName =>
+      RegExp(".*[a-zA-Z]+.*").hasMatch(openMode) ? "分墙面打开" : openMode;
 }

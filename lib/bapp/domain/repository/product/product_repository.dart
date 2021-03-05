@@ -15,6 +15,10 @@ import 'package:taoju5/xdio/x_dio.dart';
 class ProductRepository {
   final ProductAPI _api = ProductAPI();
 
+  Future<BaseResponse> categoryList({Map params}) {
+    return _api.categoryList("/api/goods/getGoodsCategory");
+  }
+
   Future<ProductModelListWrapper> productList({Map params}) {
     return _api
         .productList("/api/goods/goodsListByConditions", params: params)

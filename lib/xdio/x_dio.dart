@@ -14,6 +14,7 @@ import 'package:taoju5/storage/storage_manager.dart';
 import 'package:taoju5/utils/json_kit.dart';
 import 'package:taoju5/utils/x_logger.dart';
 import 'package:taoju5/config/net_config.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class XDio {
   // 私有构造函数
@@ -53,6 +54,14 @@ class XDio {
         }),
         onResponse: (Response response) {
           response.data = jsonDecode(response.toString());
+          BaseResponse baseResponse = BaseResponse.fromJson(response.data);
+          if (response.data is Map) {
+            // response.data = JsonKit.normalize(response.data);
+            print(response.data);
+          }
+          if (!baseResponse.isValid) {
+            EasyLoading.showInfo(baseResponse.message);
+          }
           XLogger.e(
               "*******************************请求结果*******************************\n${response.data}");
           return response;
@@ -77,8 +86,8 @@ class XDio {
     return map;
   }
 
-  Future<BaseResponse> get<T>(String url, {Map params, Options options}) async {
-    Response response = await dio.get<T>(url,
+  Future<BaseResponse> get(String url, {Map params, Options options}) async {
+    Response response = await dio.get(url,
         queryParameters: params?.cast<String, dynamic>(), options: options);
     return BaseResponse.fromJson(response.data);
   }

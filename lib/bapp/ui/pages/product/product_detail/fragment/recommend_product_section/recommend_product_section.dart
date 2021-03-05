@@ -10,9 +10,6 @@ import 'package:get/utils.dart';
 import 'package:get/get.dart';
 import 'package:taoju5/bapp/domain/model/product/product_model.dart';
 import 'package:taoju5/bapp/res/b_dimens.dart';
-import 'package:taoju5/bapp/routes/bapp_pages.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/widgets/x_title_bar.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_list/widgets/product_card.dart';
 

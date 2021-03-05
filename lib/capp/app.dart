@@ -9,6 +9,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:taoju5/capp/ui/pages/home/home_page.dart';
 import 'package:taoju5/config/app_config.dart';
+
 import 'package:taoju5/config/app_env.dart';
 
 import 'routes/capp_pages.dart';

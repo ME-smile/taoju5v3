@@ -33,12 +33,17 @@ class ProductListPage extends GetView<ProductListParentController> {
         bottom: PreferredSize(
             child: Column(
               children: [
-                TabBar(
-                  controller: controller.tabController,
-                  tabs: [
-                    for (ProductTabModel tab in controller.tabList)
-                      Text(tab.name)
-                  ],
+                GetBuilder<ProductListParentController>(
+                  id: "tab",
+                  builder: (_) {
+                    return TabBar(
+                      controller: controller.tabController,
+                      tabs: [
+                        for (ProductTabModel tab in controller.tabList)
+                          Text(tab.name)
+                      ],
+                    );
+                  },
                 ),
                 ProductListHeader(),
               ],

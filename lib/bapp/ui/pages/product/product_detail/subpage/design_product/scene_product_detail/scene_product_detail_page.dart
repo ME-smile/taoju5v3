@@ -15,7 +15,6 @@ import 'package:taoju5/bapp/ui/widgets/base/x_loadstate_builder.dart';
 import 'package:taoju5/bapp/ui/widgets/bloc/x_cart_button.dart';
 import 'package:taoju5/bapp/ui/widgets/bloc/x_customer_choose_button.dart';
 import 'package:taoju5/bapp/ui/widgets/common/x_photo_viewer.dart';
-import 'package:taoju5/config/app_config.dart';
 
 import 'scene_product_detail_controller.dart';
 import 'widget/x_tag_chip.dart';
@@ -99,7 +98,7 @@ class SceneProductDetailPage extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(right: BDimens.gap36),
                               child: XCartButton(
-                                imageUrl: AppConfig.imagePrefix +
+                                imageUrl: "assets/images/" +
                                     "product_detail_cart.png",
                               ),
                             ),

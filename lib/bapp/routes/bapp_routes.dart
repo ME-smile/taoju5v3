@@ -55,6 +55,10 @@ abstract class BAppRoutes {
 
   static const orderLog = '/orderLog';
 
+  static const orderMeasureData = '/orderMeasureData';
+
+  static const orderMeasureDataEdit = '/orderMeasureDataEdit';
+
   static const commitOrder = '/commitOrder';
 
   static const commitOrderSuccess = '/commitOrderSuccess';
@@ -66,6 +70,8 @@ abstract class BAppRoutes {
   static const appVersion = '/appVersion';
 
   static const cart = '/cart';
+
+  static const modifyCurtainProductAttr = '/modifyCurtainProductAttr';
 
   static const dashBoard = '/dashboard';
 

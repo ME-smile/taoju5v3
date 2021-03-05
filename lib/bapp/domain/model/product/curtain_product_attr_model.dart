@@ -103,6 +103,12 @@ extension CurtainProductAttrModelKit on CurtainProductAttrModel {
     // model.id = id;
     return model;
   }
+
+  Map get params => {
+        "$type": isMultiple
+            ? confirmSelectedOptionList?.map((e) => e.toJson())?.toList()
+            : confirmSelectedOptionList?.first?.toJson()
+      };
 }
 
 ///[Curtai['

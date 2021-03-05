@@ -18,7 +18,6 @@ import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_att
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/window_style/window_style_selector_bar.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/window_style/window_style_selector_controller.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/product_detail_controller.dart';
-import 'package:taoju5/config/app_config.dart';
 
 class EditMeasureDataPage extends StatelessWidget {
   const EditMeasureDataPage({Key key}) : super(key: key);
@@ -49,7 +48,7 @@ class EditMeasureDataPage extends StatelessWidget {
                   tag: tag,
                   builder: (_) {
                     return Image.asset(
-                      AppConfig.imagePrefix + _.mainImg,
+                      "assets/images/" + _.mainImg,
                       height: 480.w,
                     );
                   },

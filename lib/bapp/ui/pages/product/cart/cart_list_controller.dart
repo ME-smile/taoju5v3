@@ -14,6 +14,7 @@ import 'package:taoju5/bapp/domain/repository/product/product_repository.dart';
 import 'package:taoju5/bapp/routes/bapp_pages.dart';
 import 'package:taoju5/bapp/ui/pages/home/customer_provider_controller.dart';
 import 'package:taoju5/bapp/ui/widgets/base/x_view_state.dart';
+import 'package:taoju5/xdio/x_dio.dart';
 
 class CartListParentController extends GetxController
     with SingleGetTickerProviderMixin {
@@ -55,12 +56,28 @@ class CartListParentController extends GetxController
     update(["action", "isCheckedAll"]);
   }
 
+  Future loadData() {
+    ProductRepository _repository = ProductRepository();
+    List<ProductTabModel> _tabList = [];
+    return _repository.categoryList().then((BaseResponse response) {
+      if (response.isValid) {
+        List list = response.data;
+        for (int i = 0; i < list.length; i++) {
+          _tabList.add(ProductTabModel(name: list[i], id: i));
+        }
+        tabList = _tabList;
+        update(["tab"]);
+      }
+    });
+  }
+
   @override
   void onInit() {
     tabController = TabController(
       length: tabList.length,
       vsync: this,
     )..addListener(tabChangeListener);
+    loadData();
     super.onInit();
   }
 

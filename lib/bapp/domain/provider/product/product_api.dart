@@ -8,6 +8,10 @@
 import 'package:taoju5/xdio/x_dio.dart';
 
 class ProductAPI {
+  ///商品分类
+  Future<BaseResponse> categoryList(String url, {Map params}) =>
+      XDio().get(url, params: params);
+
   Future<BaseResponse> productList(String url, {Map params}) =>
       XDio().get(url, params: params);
 

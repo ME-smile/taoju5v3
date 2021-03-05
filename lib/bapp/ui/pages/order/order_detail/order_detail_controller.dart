@@ -5,6 +5,8 @@
  * @LastEditTime: 2021-01-28 14:01:08
  */
 
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:taoju5/bapp/domain/model/order/order_detail_model.dart';
@@ -18,9 +20,49 @@ import 'package:taoju5/bapp/ui/dialog/order/cancel_order.dart';
 import 'package:taoju5/bapp/ui/dialog/order/cancel_product.dart';
 import 'package:taoju5/bapp/ui/dialog/order/order_remind.dart';
 import 'package:taoju5/bapp/ui/modal/order/modify_price.dart';
+import 'package:taoju5/bapp/ui/pages/product/product_detail/product_detail_controller.dart';
 import 'package:taoju5/bapp/ui/widgets/base/x_view_state.dart';
+import 'package:taoju5/utils/x_logger.dart';
 
 enum ModifyPriceMode { amount, discount }
+
+class SelectProductParamsModel {
+  int count;
+
+  String productId;
+
+  int orderProductId;
+
+  String deltaY;
+
+  List<String> installMode;
+
+  List<String> openMode;
+  String _tag;
+
+  CurtainProductAtrrParamsModel _attribute;
+
+  SelectProductParamsModel({
+    this.productId,
+    this.count = 1,
+    @required this.orderProductId,
+  }) {
+    this._tag = "$productId";
+    this._attribute = CurtainProductAtrrParamsModel(tag: _tag);
+  }
+
+  Map get params => {
+        "vertical_ground_height": deltaY,
+        "data": jsonEncode({
+          "num": count,
+          "goods_id": productId,
+          "安装选项": installMode,
+          "打开方式": openMode
+        }),
+        "order_goods_id": orderProductId,
+        "wc_attr": jsonEncode(_attribute.params)
+      };
+}
 
 ///修改价格参数模型
 class ModifyPriceParamsModel {
@@ -95,6 +137,8 @@ class OrderDetailController extends GetxController {
   OrderDetailProductModel currentProduct;
   XLoadState loadState = XLoadState.busy;
 
+  SelectProductParamsModel selectProductArgs;
+
   ///加载数据
   Future<OrderDetailModelWrapper> _loadData() {
     final id = Get.parameters["id"];
@@ -109,14 +153,15 @@ class OrderDetailController extends GetxController {
   }
 
   Future select() {
+    XLogger.v(selectProductArgs?.params);
     return _repository
-        .selectProduct(params: {"order_goods_id": currentProduct.id})
+        .selectProduct(params: selectProductArgs?.params)
         .catchError((err) {})
         .whenComplete(() {
-          Get.until((route) =>
-              RegExp(BAppRoutes.orderDetail).hasMatch(Get.currentRoute));
-          _loadData();
-        });
+      Get.until(
+          (route) => RegExp(BAppRoutes.orderDetail).hasMatch(Get.currentRoute));
+      _loadData();
+    });
   }
 
   Future goToSelect(OrderDetailProductModel product) {
@@ -182,9 +227,17 @@ class OrderDetailController extends GetxController {
     return _repository.remind(params: model.params).then((_) {});
   }
 
+  previewEditLog() {
+    if (order.isInstallTimeChanged || order.isMeasureTimeChanged) {
+      return Get.toNamed(BAppRoutes.orderLog + "/${order.id}");
+    }
+  }
+
   @override
   void onInit() {
     _loadData();
+    selectProductArgs = SelectProductParamsModel(
+        orderProductId: currentProduct?.measureData?.orderProductId);
     super.onInit();
   }
 }

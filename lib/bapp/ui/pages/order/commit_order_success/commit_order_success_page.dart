@@ -12,7 +12,6 @@ import 'package:taoju5/bapp/res/b_dimens.dart';
 import 'package:taoju5/bapp/routes/bapp_pages.dart';
 import 'package:taoju5/bapp/ui/pages/home/customer_provider_controller.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/subpage/product_share/product_share_controller.dart';
-import 'package:taoju5/config/app_config.dart';
 
 class CommitOrderSuccessPage extends GetView<CustomerProviderController> {
   const CommitOrderSuccessPage({Key key}) : super(key: key);
@@ -42,7 +41,7 @@ class CommitOrderSuccessPage extends GetView<CustomerProviderController> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(AppConfig.imagePrefix + "success.png"),
+              Image.asset("assets/images/" + "success.png"),
               Visibility(
                   visible: !isFromShare,
                   child: Column(

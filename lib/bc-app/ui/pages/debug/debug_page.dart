@@ -7,8 +7,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:taoju5/bapp/res/b_colors.dart';
-import 'package:taoju5/config/app_config.dart';
+
 import 'package:get/get.dart';
+import 'package:taoju5/config/app_config.dart';
 
 import 'debug_controller.dart';
 import 'switch_env_dialog.dart';

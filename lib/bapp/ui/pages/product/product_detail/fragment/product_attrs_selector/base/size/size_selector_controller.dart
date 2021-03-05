@@ -24,6 +24,16 @@ class SizeSelectorController extends GetxController {
   bool get isSizeNullOrEmpty =>
       GetUtils.isNullOrBlank(width) || GetUtils.isNullOrBlank(height);
 
+  Map get params => {
+        "9": [
+          {"name": "宽", "value": widthCM},
+          {"name": "高", "value": heightCM}
+        ]
+      };
+
+  ///测装数据是否已确认
+  bool hasChecked = false;
+
   TextEditingController widthController;
   TextEditingController heightController;
   TextEditingController deltaYController;
@@ -48,6 +58,7 @@ class SizeSelectorController extends GetxController {
     width = widthController?.text;
     height = heightController?.text;
     deltaY = deltaYController?.text;
+    hasChecked = true;
     update(["size"]);
   }
 }

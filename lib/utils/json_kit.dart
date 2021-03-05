@@ -19,6 +19,22 @@ abstract class JsonKit {
     return n;
   }
 
+  static String asString(dynamic n, {String trueDesc, String falseDesc}) {
+    if (n is String && GetUtils.isNum(n)) {
+      n = JsonKit.asInt(n);
+    }
+    if (n is num) {
+      if (GetUtils.isNullOrBlank(trueDesc) ||
+          GetUtils.isNullOrBlank(trueDesc)) {
+        return n.toString();
+      }
+      if (n > 0) return trueDesc;
+      return falseDesc;
+    }
+
+    return n.toString();
+  }
+
   static double asDouble(dynamic n) {
     if (n is num) return n.toDouble();
     if (GetUtils.isNum(n)) return double.tryParse(n);
@@ -49,6 +65,7 @@ abstract class JsonKit {
   }
 
   static List asList(dynamic value) {
+    if (value == null) return [];
     if (value is List) return value;
     if (value is Iterable) return value.toList();
     return [];
@@ -65,6 +82,11 @@ abstract class JsonKit {
 
   static DateTime getDateTimeFromMillseconds(int mills) {
     return DateTime.fromMillisecondsSinceEpoch((mills ?? 0) * 1000);
+  }
+
+  static String formatDateTimeFromMillseconds(int mills,
+      {String format: "yyyy-MM-dd HH:mm:ss"}) {
+    return formatDateTime(getDateTimeFromMillseconds(mills));
   }
 
   static String formatDateTime(DateTime dateTime,
@@ -85,5 +107,27 @@ abstract class JsonKit {
       list[i].isChecked = i == 0;
     }
     return list;
+  }
+
+  static bool isImage(String url) {
+    return GetUtils.isImage(url);
+  }
+
+  static bool isUrl(String url) {
+    return GetUtils.isURL(url);
+  }
+
+  static Map normalize(Map json) {
+    for (MapEntry entry in json.entries) {
+      var value = entry.value;
+      var key = entry.key;
+      if (value is Map) {
+        return normalize(value);
+      }
+      if (value is String && (isImage(value))) {
+        json[key] = JsonKit.asWebUrl(value);
+      }
+    }
+    return json;
   }
 }

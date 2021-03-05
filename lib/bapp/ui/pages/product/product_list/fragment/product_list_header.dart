@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taoju5/bapp/res/b_dimens.dart';
 import 'package:taoju5/bapp/ui/widgets/common/button/x_rotation_arrow.dart';
-import 'package:taoju5/config/app_config.dart';
 
 import '../product_list_controller.dart';
 
@@ -32,10 +31,10 @@ class ProductListHeader extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.only(right: BDimens.gap16),
-                    child: Image.asset(AppConfig.imagePrefix + "grid_mode.png"),
+                    child: Image.asset("assets/images/" + "grid_mode.png"),
                   ),
                   Container(
-                    child: Image.asset(AppConfig.imagePrefix + "list_mode.png"),
+                    child: Image.asset("assets/images/" + "list_mode.png"),
                   ),
                 ],
               );
@@ -58,7 +57,7 @@ class ProductListHeader extends StatelessWidget {
                     child: Row(
                       children: [
                         Text("筛选"),
-                        Image.asset(AppConfig.imagePrefix + "filter.png")
+                        Image.asset("assets/images/" + "filter.png")
                       ],
                     ),
                   )

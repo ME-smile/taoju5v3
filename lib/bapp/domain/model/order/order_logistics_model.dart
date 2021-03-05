@@ -10,6 +10,11 @@ class PacketLogisticsModelListWrapper {
   }
 }
 
+extension PacketLogisticsModelListWrapperKit
+    on PacketLogisticsModelListWrapper {
+  int get hasSendCount => packetList?.where((e) => e.hasSendOut)?.length ?? 0;
+}
+
 class PacketLogisticsModel {
   String name;
   String status;
@@ -33,6 +38,11 @@ class PacketLogisticsModel {
         .map((e) => PacketStationModel.fromJson(e))
         .toList();
   }
+}
+
+extension PacketLogisticsModelKit on PacketLogisticsModel {
+  ///快件是否已发出
+  bool get hasSendOut => stationList.length > 0;
 }
 
 class PacketStationModel {

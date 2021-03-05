@@ -13,6 +13,7 @@ import 'package:taoju5/bapp/ui/pages/order/order_detail/order_detail_controller.
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taoju5/bapp/domain/model/order/order_detail_model.dart';
+import 'package:taoju5/bapp/ui/widgets/bloc/x_copy_button.dart';
 
 class OrderDetailFooter extends GetView<OrderDetailController> {
   const OrderDetailFooter({Key key}) : super(key: key);
@@ -23,20 +24,23 @@ class OrderDetailFooter extends GetView<OrderDetailController> {
       padding: EdgeInsets.all(BDimens.gap32),
       child: Column(
         children: [
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.only(right: BDimens.gap16),
-                color: BColors.foregroundColor,
-                height: 32.h,
-                width: 6.w,
-              ),
-              Text(
-                "订单信息",
-                style: TextStyle(
-                    fontSize: BDimens.sp28, fontWeight: FontWeight.w400),
-              )
-            ],
+          Container(
+            margin: EdgeInsets.only(bottom: BDimens.gap16),
+            child: Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(right: BDimens.gap16),
+                  color: BColors.foregroundColor,
+                  height: 32.h,
+                  width: 6.w,
+                ),
+                Text(
+                  "订单信息",
+                  style: TextStyle(
+                      fontSize: BDimens.sp28, fontWeight: FontWeight.w400),
+                )
+              ],
+            ),
           ),
           DefaultTextStyle(
               style:
@@ -50,16 +54,22 @@ class OrderDetailFooter extends GetView<OrderDetailController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("订单备注:"),
-                          Text("${controller.order.note}")
+                          Text(GetUtils.isNullOrBlank(controller.order.note)
+                              ? "暂无备注"
+                              : "${controller.order.note}")
                         ],
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.only(top: BDimens.gap8),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("订单编号:"),
+                          Spacer(),
+                          Container(
+                              margin: EdgeInsets.only(right: BDimens.gap32),
+                              child: XCopyButton(content: controller.order.no)),
                           Text("${controller.order.no}")
                         ],
                       ),
@@ -129,7 +139,13 @@ class OrderDetailFooter extends GetView<OrderDetailController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("下单门店:"),
-                          Text("${controller.order.shopName}")
+                          Expanded(
+                              child: Text(
+                            "${controller.order.shopName}",
+                            textAlign: TextAlign.end,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ))
                         ],
                       ),
                     ),

@@ -15,6 +15,7 @@ import 'package:taoju5/bapp/domain/model/product/product_type.dart';
 import 'package:taoju5/bapp/res/b_colors.dart';
 import 'package:taoju5/bapp/res/b_dimens.dart';
 import 'package:taoju5/bapp/res/b_icons.dart';
+import 'package:taoju5/bapp/routes/bapp_pages.dart';
 import 'package:taoju5/bapp/ui/modal/product/finished_product.dart';
 import 'package:taoju5/bapp/ui/pages/product/cart/cart_list_controller.dart';
 
@@ -31,11 +32,20 @@ class CartPage extends GetView<CartListParentController> {
     return Scaffold(
         appBar: AppBar(
           title: Text("购物车"),
-          bottom: TabBar(
-            controller: controller.tabController,
-            tabs: [
-              for (ProductTabModel tab in controller.tabList) Text(tab.name)
-            ],
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(kTextTabBarHeight),
+            child: GetBuilder<CartListParentController>(
+              id: "tab",
+              builder: (_) {
+                return TabBar(
+                  controller: controller.tabController,
+                  tabs: [
+                    for (ProductTabModel tab in controller.tabList)
+                      Text(tab.name)
+                  ],
+                );
+              },
+            ),
           ),
         ),
         body: TabBarView(controller: controller.tabController, children: [
@@ -183,53 +193,60 @@ class CartPage extends GetView<CartListParentController> {
                                     Visibility(
                                       visible:
                                           !GetUtils.isNullOrBlank(e.attrsList),
-                                      child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: BDimens.gap16,
-                                              horizontal: BDimens.gap24),
-                                          color: BColors.scaffoldBgColor,
-                                          margin: EdgeInsets.only(
-                                              left: 42,
-                                              top: 20,
-                                              bottom: BDimens.gap36),
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: GridView.builder(
-                                                  shrinkWrap: true,
-                                                  physics:
-                                                      NeverScrollableScrollPhysics(),
-                                                  padding: EdgeInsets.zero,
-                                                  itemCount: e.attrsList.length,
-                                                  itemBuilder:
-                                                      (BuildContext context,
-                                                          int index) {
-                                                    ProductAttrAdapterModel
-                                                        item =
-                                                        e.attrsList[index];
-                                                    return Text(
-                                                      "${item.key}:${item.value}",
-                                                      style: TextStyle(
-                                                          color: BColors
-                                                              .descriptionTextColor,
-                                                          fontSize:
-                                                              BDimens.sp24),
-                                                    );
-                                                  },
-                                                  gridDelegate:
-                                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                                          crossAxisCount: 2,
-                                                          mainAxisSpacing: 0,
-                                                          crossAxisSpacing: 0,
-                                                          childAspectRatio: 8),
+                                      child: GestureDetector(
+                                        onTap: () => Get.toNamed(BAppRoutes
+                                                .modifyCurtainProductAttr +
+                                            "/${e.id}"),
+                                        child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: BDimens.gap16,
+                                                horizontal: BDimens.gap24),
+                                            color: BColors.scaffoldBgColor,
+                                            margin: EdgeInsets.only(
+                                                left: 42,
+                                                top: 20,
+                                                bottom: BDimens.gap36),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  child: GridView.builder(
+                                                    shrinkWrap: true,
+                                                    physics:
+                                                        NeverScrollableScrollPhysics(),
+                                                    padding: EdgeInsets.zero,
+                                                    itemCount:
+                                                        e.attrsList.length,
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      ProductAttrAdapterModel
+                                                          item =
+                                                          e.attrsList[index];
+                                                      return Text(
+                                                        "${item.key}:${item.value}",
+                                                        style: TextStyle(
+                                                            color: BColors
+                                                                .descriptionTextColor,
+                                                            fontSize:
+                                                                BDimens.sp24),
+                                                      );
+                                                    },
+                                                    gridDelegate:
+                                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                                            crossAxisCount: 2,
+                                                            mainAxisSpacing: 0,
+                                                            crossAxisSpacing: 0,
+                                                            childAspectRatio:
+                                                                8),
+                                                  ),
                                                 ),
-                                              ),
-                                              GestureDetector(
-                                                child: Icon(BIcons.next),
-                                                onTap: () {},
-                                              )
-                                            ],
-                                          )),
+                                                GestureDetector(
+                                                  child: Icon(BIcons.next),
+                                                  onTap: () {},
+                                                )
+                                              ],
+                                            )),
+                                      ),
                                     ),
                                     Visibility(
                                       visible:

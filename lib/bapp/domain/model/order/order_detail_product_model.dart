@@ -9,6 +9,8 @@ import 'package:taoju5/bapp/domain/model/order/order_type.dart';
 import 'package:taoju5/bapp/domain/model/order/refund_status.dart';
 import 'package:taoju5/utils/json_kit.dart';
 
+import 'order_detail_model.dart';
+
 class OrderDetailProductModel {
   int id;
   int orderId;
@@ -25,6 +27,7 @@ class OrderDetailProductModel {
   int refundStatusCode;
 
   bool hasSelected;
+  OrderMeasureDataModel measureData;
 
   OrderDetailProductModel.fromJson(Map json) {
     id = json["order_goods_id"];
@@ -41,6 +44,9 @@ class OrderDetailProductModel {
     totalPrice = json["estimated_price"];
     hasSelected = JsonKit.asBool(json["is_selected_goods"]);
     orderStatusName = json["status_name"];
+
+    measureData =
+        OrderMeasureDataModel.fromJson(json["order_goods_measure"] ?? {});
   }
 }
 

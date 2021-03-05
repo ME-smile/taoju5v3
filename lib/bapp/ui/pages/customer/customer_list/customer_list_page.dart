@@ -18,7 +18,6 @@ import 'package:taoju5/bapp/ui/pages/customer/customer_list/customer_list_contro
 import 'package:taoju5/bapp/ui/pages/customer/customer_list/customer_list_skeleton.dart';
 import 'package:taoju5/bapp/ui/pages/search/search_controller.dart';
 import 'package:taoju5/bapp/ui/widgets/base/x_loadstate_builder.dart';
-import 'package:taoju5/config/app_config.dart';
 
 class CustomerListPage extends StatelessWidget {
   const CustomerListPage({Key key}) : super(key: key);
@@ -34,7 +33,7 @@ class CustomerListPage extends StatelessWidget {
               onPressed: () => Get.toNamed(BAppRoutes.search,
                   arguments: SearchType.customer)),
           IconButton(
-              icon: Image.asset(AppConfig.imagePrefix + "customer_add.png"),
+              icon: Image.asset("assets/images/" + "customer_add.png"),
               onPressed: () => Get.toNamed(BAppRoutes.customerEdit + "/0"))
         ],
       ),
@@ -54,7 +53,7 @@ class CustomerListPage extends StatelessWidget {
                           horizontal: BDimens.gap32, vertical: BDimens.gap24),
                       child: Row(
                         children: [
-                          Image.asset(AppConfig.imagePrefix + e.icon),
+                          Image.asset("assets/images/" + e.icon),
                           Padding(
                             padding:
                                 EdgeInsets.symmetric(horizontal: BDimens.gap24),

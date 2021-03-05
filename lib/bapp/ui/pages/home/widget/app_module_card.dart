@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:taoju5/bapp/domain/model/app/app_module_model.dart';
 import 'package:taoju5/bapp/res/b_colors.dart';
 import 'package:taoju5/bapp/res/b_dimens.dart';
-import 'package:taoju5/config/app_config.dart';
 
 class AppModuleCard extends StatelessWidget {
   final AppModuleModel module;
@@ -25,7 +24,7 @@ class AppModuleCard extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.symmetric(horizontal: BDimens.gap24),
-              child: Image.asset(AppConfig.imagePrefix + module.icon),
+              child: Image.asset("assets/images/" + module.icon),
             ),
             FittedBox(
               child: Column(

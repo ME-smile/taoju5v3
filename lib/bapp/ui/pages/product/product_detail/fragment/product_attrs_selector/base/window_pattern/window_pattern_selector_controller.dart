@@ -15,6 +15,7 @@ class WindowPatternSelectorController extends GetxController {
   final String tag;
 
   WindowPatternSelectorController({@required this.tag});
+
   String get value =>
       "${facade.confirmedOptionName}/${windowBay.confirmedOptionName}/${windowBox.confirmedOptionName}";
 
@@ -35,6 +36,7 @@ class WindowPatternSelectorController extends GetxController {
     facade = taoju5Controller.facade;
     windowBay = taoju5Controller.windowBay;
     windowBox = taoju5Controller.windowBox;
+
     super.onInit();
   }
 

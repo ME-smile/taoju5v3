@@ -14,10 +14,17 @@ class OrderMainfestModel {
   }
 }
 
+extension OrderMainfestModelKit on OrderMainfestModel {
+  int get totalCount => productList?.length ?? 0;
+
+  double get totalPrice =>
+      productList.map((e) => JsonKit.asDouble(e.price)).reduce((a, b) => a + b);
+}
+
 class ProductMainfestModel {
   String status;
   int count;
-  double price;
+  String price;
   List<ClothMaterialModel> clothList;
 
   ProductMainfestModel.fromJson(Map json) {
@@ -32,14 +39,16 @@ class ProductMainfestModel {
 
 class ClothMaterialModel {
   String value;
-  double productPrice;
-  double clothPrice;
+  String productPrice;
+  String clothPrice;
+  String price;
   String productName;
   String key;
 
   ClothMaterialModel.fromJson(Map json) {
     productName = json["goods_name"];
     value = json["material"];
+    price = json["price"];
     clothPrice = json["price"];
     productPrice = json["goods_price"];
     key = json["material_name"];

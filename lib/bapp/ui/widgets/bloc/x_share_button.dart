@@ -15,7 +15,7 @@ import 'package:taoju5/bapp/domain/repository/product/product_repository.dart';
 import 'package:taoju5/bapp/ui/modal/share/share.dart';
 import 'package:taoju5/utils/net_kit.dart';
 import 'package:taoju5/xdio/x_dio.dart';
-import 'package:taoju5/config/app_config.dart';
+
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class XShareButtonController extends GetxController {
@@ -99,7 +99,7 @@ class XShareButton extends StatelessWidget {
       tag: "$id",
       builder: (_) {
         return IconButton(
-            icon: Image.asset(AppConfig.imagePrefix + "share.png"),
+            icon: Image.asset("assets/images/" + "share.png"),
             onPressed: _.share);
       },
     );

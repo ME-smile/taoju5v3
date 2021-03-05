@@ -12,11 +12,12 @@ import 'package:taoju5/bapp/ui/pages/order/order_detail/order_detail_skeleton.da
 import 'package:taoju5/bapp/ui/widgets/base/x_loadstate_builder.dart';
 
 import 'fragment/order_action_tip_bar.dart';
+import 'fragment/order_address_card.dart';
 import 'fragment/order_detail_body.dart';
-import 'fragment/order_detail_bottom_action_bar.dart';
 import 'fragment/order_detail_header.dart';
 import 'fragment/order_detail_sheet.dart';
 import 'fragment/order_logistics_card.dart';
+import 'fragment/order_manual_script_card.dart';
 import 'order_detail_controller.dart';
 
 class OrderDetailPage extends StatelessWidget {
@@ -24,21 +25,26 @@ class OrderDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<OrderDetailController>(
-      builder: (_) {
-        return XLoadStateBuilder(
-            loadState: _.loadState,
-            loadingWidget: OrderDetailSkeleton(),
-            builder: (BuildContext context) {
-              return Scaffold(
-                appBar: AppBar(
-                  title: Text("订单详情"),
-                ),
-                body: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("订单详情"),
+      ),
+      body: GetBuilder<OrderDetailController>(
+        builder: (_) {
+          return XLoadStateBuilder(
+              loadState: _.loadState,
+              loadingWidget: OrderDetailSkeleton(),
+              builder: (BuildContext context) {
+                return SingleChildScrollView(
                   child: Column(
                     children: [
                       OrderDetailHeader(),
                       OrderLogisticsCard(),
+                      Divider(
+                        indent: BDimens.gap32,
+                        endIndent: BDimens.gap32,
+                      ),
+                      OrderAddressCard(),
                       Divider(
                         indent: BDimens.gap32,
                         endIndent: BDimens.gap32,
@@ -54,14 +60,15 @@ class OrderDetailPage extends StatelessWidget {
                         indent: BDimens.gap32,
                         endIndent: BDimens.gap32,
                       ),
+                      OrderManualScriptCard(),
                       OrderDetailFooter(),
                     ],
                   ),
-                ),
-                bottomNavigationBar: OrderDetailBottomActionBar(),
-              );
-            });
-      },
+                );
+              });
+        },
+      ),
+      // bottomNavigationBar: OrderDetailBottomActionBar(),
     );
   }
 }

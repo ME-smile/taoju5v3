@@ -38,11 +38,11 @@ class OrderListPage extends GetView<OrderListParentController> {
               builder: (BuildContext context) {
                 return Stack(
                   children: [
-                    GetBuilder<OrderListController>(
+                    GetBuilder<OrderListParentController>(
                         id: "tab",
                         builder: (_) {
                           return IndexedStack(
-                            index: !ModalRoute.of(context).isCurrent ? 0 : 1,
+                            index: controller.showFilterPanel ? 0 : 1,
                             children: [
                               Container(
                                   margin: EdgeInsets.symmetric(

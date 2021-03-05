@@ -11,7 +11,6 @@ import 'package:taoju5/bapp/res/b_icons.dart';
 import 'package:taoju5/bapp/ui/pages/after_sell/after_sell_controller.dart';
 import 'package:taoju5/bapp/ui/widgets/common/button/x_future_button.dart';
 import 'package:get/get.dart';
-import 'package:taoju5/config/app_config.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AfterSellPage extends GetView<AfterSellController> {
@@ -149,8 +148,7 @@ class AfterSellPage extends GetView<AfterSellController> {
                                     child: AspectRatio(
                                       aspectRatio: 1,
                                       child: Image.asset(
-                                        AppConfig.imagePrefix +
-                                            "upload_image.png",
+                                        "assets/images/" + "upload_image.png",
                                         color: Colors.grey.withOpacity(.5),
                                       ),
                                     )),

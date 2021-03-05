@@ -57,6 +57,8 @@ class OrderListParentController extends GetxController
   ];
   TabController tabController;
 
+  bool showFilterPanel = false;
+
   ///获取tag
   String get tag => tabList[tabController?.index ?? 0].name;
 
@@ -70,7 +72,10 @@ class OrderListParentController extends GetxController
 
   Future filter(BuildContext context) {
     ///如果已经打开了筛选面版 则关闭筛选面板
+    showFilterPanel = true;
+    update(["tab"]);
     if (!ModalRoute.of(context).isCurrent) {
+      Get.back();
       return Future.value(false);
     }
 
@@ -78,7 +83,11 @@ class OrderListParentController extends GetxController
     RenderBox renderBox = context.findRenderObject();
     Rect box = renderBox.localToGlobal(Offset.zero) & renderBox.size;
     return showXModalPopdown(context,
-        builder: (context) => OrderFilterPage(), offset: box.bottom);
+            builder: (context) => OrderFilterPage(), offset: box.bottom)
+        .whenComplete(() {
+      showFilterPanel = false;
+      update(["tab"]);
+    });
   }
 
   void selectStatus(OrderStatusTabModel model) {
