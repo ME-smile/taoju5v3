@@ -13,11 +13,8 @@ class ModifyCurtainProductAttrBinding extends Bindings {
     Get.lazyPut(() => ModifyCurtainProductAttrController());
     Get.lazyPut(() => GauzeAttrSelectorController(), tag: tag);
     Get.lazyPut(() => SectionalbarAttrSelectorController(), tag: tag);
-
     Get.lazyPut(() => ValanceAttrSelectorController(), tag: tag);
-
     Get.lazyPut(() => RibouxAttrSelectorController(), tag: tag);
-
     Get.lazyPut(() => AccessoryAttrSelectorController(), tag: tag);
   }
 }

@@ -61,6 +61,8 @@ import 'package:taoju5/bapp/ui/pages/product/product_list/product_list_binding.d
 import 'package:taoju5/bapp/ui/pages/product/product_list/product_list_page.dart';
 import 'package:taoju5/bapp/ui/pages/product/selectable_product_list/selectable_product_list_binding.dart';
 import 'package:taoju5/bapp/ui/pages/product/selectable_product_list/selectable_product_list_page.dart';
+import 'package:taoju5/bapp/ui/pages/scan_qrcode/scan_qrcode_binding.dart';
+import 'package:taoju5/bapp/ui/pages/scan_qrcode/scan_qrcode_page.dart';
 import 'package:taoju5/bapp/ui/pages/search/search_binding.dart';
 import 'package:taoju5/bapp/ui/pages/search/search_page.dart';
 import 'package:taoju5/bapp/ui/pages/setting/app_version/app_version_page.dart';
@@ -147,7 +149,7 @@ class BAppPages {
 
     ///修改购物车里面的商品属性
     GetPage(
-        name: BAppRoutes.modifyCurtainProductAttr + "/:id",
+        name: BAppRoutes.modifyCurtainProductAttr + "/:id/:tab",
         page: () => ModifyCurtainProductAttrPage(),
         binding: ModifyCurtainProductAttrBinding()),
 
@@ -269,6 +271,12 @@ class BAppPages {
     GetPage(
         name: BAppRoutes.afterSell,
         page: () => AfterSellPage(),
-        binding: AfterSellBinding())
+        binding: AfterSellBinding()),
+
+    ///扫描二维码
+    GetPage(
+        name: BAppRoutes.scanQRCode,
+        page: () => ScanQRCodePage(),
+        binding: ScanQRCodeBinding())
   ];
 }

@@ -63,6 +63,11 @@ class ProductRepository {
         throw err;
       });
 
+  ///购物车数量
+  Future<BaseResponse> cartCount({Map params}) {
+    return _api.cartCount("/api/goods/cartCount", params: params);
+  }
+
   Future<CartPorductModelListWrapper> cartList({Map params}) {
     return _api
         .cartList("/api/goods/cartList", params: params)
@@ -74,6 +79,11 @@ class ProductRepository {
     }).catchError((err) {
       throw err;
     });
+  }
+
+  Future<BaseResponse> modifyProductAttr({Map params}) {
+    return _api.modifyProductAttr("/api/goods/modifyCartAccessory",
+        params: params);
   }
 
   Future<ProductFilterTagModelListWrapper> filterTag({Map params}) {
@@ -120,7 +130,15 @@ class ProductRepository {
   }
 
   Future<BaseResponse> isLiked({Map params}) {
-    return _api.isLiked("/api/goods/whetherCollection");
+    return _api.isLiked("/api/goods/whetherCollection", params: params);
+  }
+
+  Future<BaseResponse> like({Map params}) {
+    return _api.like("/api/member/addCollection", params: params);
+  }
+
+  Future<BaseResponse> dislike({Map params}) {
+    return _api.dislike("/api/member/cancelCollection", params: params);
   }
 
   Future addToCart() {}

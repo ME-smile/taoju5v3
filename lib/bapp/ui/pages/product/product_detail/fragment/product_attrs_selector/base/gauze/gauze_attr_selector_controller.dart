@@ -16,6 +16,7 @@ class GauzeAttrSelectorController extends BaseAttrSelectorController {
   void onInit() {
     attr = taojuwuController.gauze;
     attr?.optionList?.first?.isChecked = true;
+
     super.onInit();
   }
 

@@ -31,7 +31,7 @@ class CartListParentController extends GetxController
   double totalPrice = 0.0;
   CartListParentController();
 
-  String get tag => tabList[tabController?.index ?? 0].name;
+  String get tag => "${tabList[tabController?.index ?? 0].id}";
   CartListController get cartListController =>
       Get.find<CartListController>(tag: tag);
   List<CartPorductModel> get cartList => cartListController.cartList;

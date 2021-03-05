@@ -34,30 +34,40 @@ class MeasureDataParamsModel {
   String height;
 }
 
-class CurtainProductAtrrParamsModel {
+class CurtainProductAtrrParamsModel<T> {
   String tag;
 
   CurtainProductAtrrParamsModel({@required this.tag});
 
   List get _controllers => [
-        // Get.find<RoomAttrSelectorController>(tag: tag),
-        Get.find<GauzeAttrSelectorController>(tag: tag),
-        Get.find<CraftAttrSelectorController>(tag: tag),
-        Get.find<SectionalbarAttrSelectorController>(tag: tag),
-        Get.find<RibouxAttrSelectorController>(tag: tag),
-        Get.find<ValanceAttrSelectorController>(tag: tag),
-        Get.find<AccessoryAttrSelectorController>(tag: tag),
-        Get.find<SizeSelectorController>(tag: tag)
+        _find<RoomAttrSelectorController>(tag: tag),
+        _find<GauzeAttrSelectorController>(tag: tag),
+        _find<CraftAttrSelectorController>(tag: tag),
+        _find<SectionalbarAttrSelectorController>(tag: tag),
+        _find<RibouxAttrSelectorController>(tag: tag),
+        _find<ValanceAttrSelectorController>(tag: tag),
+        _find<AccessoryAttrSelectorController>(tag: tag),
+        _find<SizeSelectorController>(tag: tag)
       ];
+
+  T _find<T>({@required String tag}) {
+    if (Get.isRegistered<T>(tag: tag)) {
+      return Get.find<T>(tag: tag);
+    }
+    return null;
+  }
 
   Map get params {
     Map map = {};
     _controllers.forEach((e) {
+      if (e == null) {
+        return;
+      }
       if (e is BaseAttrSelectorController) {
-        map.addAll(e.attr.params);
+        map.addAll(e?.attr?.params ?? {});
       }
       if (e is SizeSelectorController) {
-        map.addAll(e.params);
+        map.addAll(e?.params ?? {});
       }
     });
     return map;

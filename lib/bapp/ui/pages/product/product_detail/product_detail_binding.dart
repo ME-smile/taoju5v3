@@ -13,6 +13,8 @@ import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_att
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/window_pattern/window_pattern_selector_controller.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/product_detail_controller.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/product_register_controller.dart';
+import 'package:taoju5/bapp/ui/widgets/bloc/x_cart_button.dart';
+import 'package:taoju5/bapp/ui/widgets/bloc/x_like_button.dart';
 
 import 'fragment/product_attrs_selector/base/accessory/accessory_attr_selector_controller.dart';
 import 'fragment/product_attrs_selector/base/gauze/gauze_attr_selector_controller.dart';
@@ -58,5 +60,9 @@ class ProductDetailBinding extends Bindings {
         tag: id, fenix: true);
 
     Get.lazyPut(() => ProductDetailController(), tag: id);
+
+    Get.lazyPut(() => XLikeController());
+
+    Get.lazyPut(() => XCountController());
   }
 }

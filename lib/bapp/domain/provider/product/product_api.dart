@@ -23,7 +23,15 @@ class ProductAPI {
       XDio().get(url, params: params);
 
   ///购物车列表
+  Future<BaseResponse> cartCount(String url, {Map params}) =>
+      XDio().get(url, params: params);
+
+  ///购物车列表
   Future<BaseResponse> cartList(String url, {Map params}) =>
+      XDio().get(url, params: params);
+
+  ///修改商品属性
+  Future<BaseResponse> modifyProductAttr(String url, {Map params}) =>
       XDio().get(url, params: params);
 
   ///商品列表过滤条件
@@ -38,11 +46,17 @@ class ProductAPI {
   Future<BaseResponse> softDesignProductDetail(String url, {Map params}) =>
       XDio().get(url, params: params);
 
+  ///查询是否为收藏状态
   Future<BaseResponse> isLiked(String url, {Map params}) =>
       XDio().get(url, params: params);
 
-  Future<BaseResponse> collect(String url, {Map params}) =>
-      XDio().post(url, queryParameters: params);
+  ///收藏
+  Future<BaseResponse> like(String url, {Map params}) =>
+      XDio().get(url, params: params);
+
+  ///收藏
+  Future<BaseResponse> dislike(String url, {Map params}) =>
+      XDio().get(url, params: params);
 
   //加入购物车
   Future<BaseResponse> addToCart(String url, {Map params}) =>

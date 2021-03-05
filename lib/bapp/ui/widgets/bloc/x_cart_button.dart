@@ -7,18 +7,42 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taoju5/bapp/domain/repository/product/product_repository.dart';
 import 'package:taoju5/bapp/routes/bapp_pages.dart';
 import 'package:taoju5/bapp/ui/pages/home/customer_provider_controller.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:taoju5/xdio/x_dio.dart';
 
-class _XCartButtonController extends GetxController {
+class XCountController extends GetxController {
+  CustomerProviderController customerProvider =
+      Get.find<CustomerProviderController>();
+  int count = 0;
   jump() {
-    CustomerProviderController customerProvider =
-        Get.find<CustomerProviderController>();
     if (customerProvider.isCustomerNull) {
       return EasyLoading.showError("请先选择客户哦");
     }
     return Get.toNamed(BAppRoutes.cart + "/${customerProvider.id}");
+  }
+
+  Future loadData() {
+    if (customerProvider.isCustomerNull) {
+      return Future.value(false);
+    }
+    ProductRepository repository = ProductRepository();
+    return repository
+        .cartCount(params: {"client_uid": customerProvider.id}).then(
+            (BaseResponse response) {
+      print("获取购物车数量");
+      print(response.data);
+      count = response.data;
+      update();
+    });
+  }
+
+  @override
+  void onInit() {
+    loadData();
+    super.onInit();
   }
 }
 
@@ -30,10 +54,17 @@ class XCartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<_XCartButtonController>(
-        init: _XCartButtonController(),
+    return GetBuilder<XCountController>(
+        // init: XCountController(),
         builder: (_) {
-          return GestureDetector(onTap: _.jump, child: Image.asset(imageUrl));
-        });
+      return GestureDetector(
+          onTap: _.jump,
+          child: Column(
+            children: [
+              Text("${_.count}"),
+              Image.asset(imageUrl),
+            ],
+          ));
+    });
   }
 }

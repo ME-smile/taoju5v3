@@ -63,6 +63,12 @@ class CartPorductModel implements IXCountable, AbstractProdductModel {
         .map((e) => ProductAttrAdapterModel.fromJson(e))
         .toList();
   }
+
+  CartPorductModel.modify(Map json, List<ProductAttrAdapterModel> list) {
+    description = json["goods_attr_str"];
+    estimatedPrice = JsonKit.asDouble(json["estimated_price"]) * count.value;
+    attrsList = list;
+  }
 }
 
 extension CartPorductModelKit on CartPorductModel {

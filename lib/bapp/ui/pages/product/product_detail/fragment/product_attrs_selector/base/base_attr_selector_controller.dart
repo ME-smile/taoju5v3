@@ -7,8 +7,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:taoju5/bapp/domain/model/product/cart_product_model.dart';
 import 'package:taoju5/bapp/domain/model/product/curtain_product_attr_model.dart';
+import 'package:taoju5/bapp/domain/model/product/product_attr_model.dart';
 import 'package:taoju5/bapp/ui/pages/home/taojuwu_controller.dart';
+import 'package:taoju5/bapp/ui/pages/product/cart/cart_list_controller.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/craft/craft_attr_selector_controller.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/gauze/gauze_attr_selector_controller.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/sectionalbar/sectionalbar_attr_selector_controller.dart';
@@ -21,6 +24,39 @@ abstract class BaseAttrSelectorController extends GetxController {
 
   String get value => attr?.currentOptionName;
 
+  @override
+  void onInit() {
+    initFromCartPorductModel();
+    super.onInit();
+  }
+
+  void assignToCartProduct() {
+    if (Get.isRegistered<CartListParentController>()) {
+      CartPorductModel e = Get.arguments;
+      e?.attrsList?.forEach((element) {
+        if (element.type == attr.type) {
+          element.value = attr.currentOptionName;
+        }
+      });
+    }
+  }
+
+  void initFromCartPorductModel() {
+    if (Get.isRegistered<CartListParentController>()) {
+      CartPorductModel e = Get.arguments;
+      e?.attrsList?.forEach((el) {
+        if (el?.type == attr?.type) {
+          attr?.optionList?.forEach((o) {
+            o?.isChecked =
+                o.name.contains(el?.value) || el.value.contains(o.name);
+            o?.hasConfirmed = o?.isChecked;
+          });
+        }
+      });
+      update();
+    }
+  }
+
   @mustCallSuper
   void select(
       CurtainProductAttrModel attr, CurtainProductAttrOptionModel option) {
@@ -31,7 +67,7 @@ abstract class BaseAttrSelectorController extends GetxController {
         o.isChecked = o.id == option.id;
       }
     }
-    print(option.name);
+
     filter();
     update(["attribute"]);
   }
@@ -170,9 +206,11 @@ abstract class BaseAttrSelectorController extends GetxController {
       e.hasConfirmed = true;
       update(["value"]);
     });
-    print(
-        Get.find<ProductDetailController>(tag: tag).priceDelegator?.totalPrice);
-    Get.find<ProductDetailController>(tag: tag).updateTotalPrice();
+
+    if (Get.isRegistered<ProductDetailController>()) {
+      Get.find<ProductDetailController>(tag: tag).updateTotalPrice();
+    }
+
     Get.back();
   }
 }

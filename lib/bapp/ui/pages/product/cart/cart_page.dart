@@ -51,7 +51,7 @@ class CartPage extends GetView<CartListParentController> {
         body: TabBarView(controller: controller.tabController, children: [
           for (ProductTabModel tab in controller.tabList)
             GetBuilder<CartListController>(
-                tag: tab.name,
+                tag: "${tab.id}",
                 autoRemove: false,
                 builder: (_) {
                   return XLoadStateBuilder(
@@ -194,9 +194,11 @@ class CartPage extends GetView<CartListParentController> {
                                       visible:
                                           !GetUtils.isNullOrBlank(e.attrsList),
                                       child: GestureDetector(
-                                        onTap: () => Get.toNamed(BAppRoutes
-                                                .modifyCurtainProductAttr +
-                                            "/${e.id}"),
+                                        onTap: () => Get.toNamed(
+                                            BAppRoutes
+                                                    .modifyCurtainProductAttr +
+                                                "/${e.id}/${tab.id}",
+                                            arguments: e),
                                         child: Container(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: BDimens.gap16,

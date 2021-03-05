@@ -118,8 +118,8 @@ class ProductListParentController extends GetxController
     if (!ModalRoute.of(context).isCurrent) {
       Get.back();
     }
-    print("啦啦啦啦啦啦");
-    print(scaffoldKey.currentState);
+    // print("啦啦啦啦啦啦");
+    // print(scaffoldKey.currentState);
     //如果已经打开了筛选面板
     if (scaffoldKey?.currentState?.isEndDrawerOpen == true) {
       Get.back();

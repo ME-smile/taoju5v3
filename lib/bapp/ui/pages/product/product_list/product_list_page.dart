@@ -10,6 +10,8 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:taoju5/bapp/domain/model/product/product_tab_model.dart';
+import 'package:taoju5/bapp/res/b_colors.dart';
+import 'package:taoju5/bapp/res/b_icons.dart';
 import 'package:taoju5/bapp/routes/bapp_pages.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_list/fragment/product_list_body/product_grid_mode_skeleton.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_list/fragment/product_list_filter/product_list_filter_page.dart';
@@ -28,6 +30,17 @@ class ProductListPage extends GetView<ProductListParentController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: XSearchBar(
+        actions: [
+          Visibility(
+            visible: GetPlatform.isAndroid || GetPlatform.isIOS,
+            child: IconButton(
+                icon: Icon(
+                  BIcons.scan,
+                  color: BColors.greyTextColor,
+                ),
+                onPressed: () => Get.toNamed(BAppRoutes.scanQRCode)),
+          )
+        ],
         onTap: () =>
             Get.toNamed(BAppRoutes.search, arguments: SearchType.product),
         bottom: PreferredSize(

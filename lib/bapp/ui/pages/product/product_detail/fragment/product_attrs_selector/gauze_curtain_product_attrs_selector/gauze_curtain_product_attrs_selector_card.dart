@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/accessory/accessory_attr_selector_bar.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/craft/craft_attr_selector_bar.dart';
 import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/sectionalbar/sectionalbar_attr_selector_bar.dart';
+import 'package:taoju5/bapp/ui/pages/product/product_detail/fragment/product_attrs_selector/base/size/size_selector_tip_bar.dart';
 
 class GauzeCurtainProductAttrsSelectorCard extends StatelessWidget {
   final String tag;
@@ -18,6 +19,7 @@ class GauzeCurtainProductAttrsSelectorCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizeSelectorTipBar(tag: tag),
         CraftAttrSelectorBar(tag: tag),
         SectionalbarAttrSelectorBar(tag: tag),
         AccessoryAttrSelectorBar(tag: tag)

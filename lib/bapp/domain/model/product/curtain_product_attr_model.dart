@@ -7,6 +7,7 @@
 import 'package:taoju5/bapp/domain/model/product/product_adapter_model.dart';
 import 'package:taoju5/bapp/interface/i_xselectable.dart';
 import 'package:taoju5/utils/json_kit.dart';
+import 'package:get/utils.dart';
 
 const Map _dict = {
   1: '空间',
@@ -104,11 +105,15 @@ extension CurtainProductAttrModelKit on CurtainProductAttrModel {
     return model;
   }
 
-  Map get params => {
-        "$type": isMultiple
-            ? confirmSelectedOptionList?.map((e) => e.toJson())?.toList()
-            : confirmSelectedOptionList?.first?.toJson()
-      };
+  Map get params =>
+      {
+        "$type": GetUtils.isNullOrBlank(confirmSelectedOptionList)
+            ? []
+            : isMultiple
+                ? confirmSelectedOptionList?.map((e) => e.toJson())?.toList()
+                : confirmSelectedOptionList?.first?.toJson()
+      } ??
+      {};
 }
 
 ///[Curtai['

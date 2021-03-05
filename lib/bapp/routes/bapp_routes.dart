@@ -83,5 +83,7 @@ abstract class BAppRoutes {
 
   static const userProtocol = '/userProtocol';
 
+  static const scanQRCode = '/scanQRCode';
+
   static const unkonw = "/404";
 }

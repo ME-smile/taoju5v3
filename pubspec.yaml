@@ -59,6 +59,7 @@ dev_dependencies:
   shimmer: ^1.1.2
   jpush_flutter: ^0.6.3
   permission_handler: ^5.1.0+2
+  scan: 0.0.7
   # install_plugin: ^2.0.1
   # fair: ^0.2.0
   flare_flutter: ^2.0.6
